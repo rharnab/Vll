@@ -1,0 +1,2 @@
+UPDATE gl_accounts  SET gl_bal = gl_bal - 40.00  WHERE acc_no = '900005'
+UPDATE gl_accounts  SET gl_bal = gl_bal - 520  WHERE acc_no = '900005'

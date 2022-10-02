@@ -1,0 +1,25 @@
+SELECT
+            t.types_name,
+            t.short_code,
+            rp.selling_price,
+            count(rp.type_id) as product_qty 
+        from
+            shops s 
+            left join
+            rack_products rp 
+            on rp.shop_id = s.id 
+            left join
+            types t 
+            on t.id = rp.type_id 
+        where
+<<<<<<< HEAD
+            rp.rack_code = 'VLS44' 
+=======
+            rp.rack_code = 'VLS10' 
+>>>>>>> 789f11bdb2f9779221391b8e9490dc3a5c845531
+            and rp.status = 0 
+            and rp.entry_date = '2022-01-19' 
+        group by
+            rp.type_id 
+        order by
+            rp.selling_price desc

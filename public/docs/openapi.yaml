@@ -1,0 +1,1361 @@
+openapi: 3.0.3
+info:
+  title: 'VLL Mobile Application API'
+  description: 'This api documentation for shurovi mobile application development'
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost/pegasus-socks'
+paths:
+  /api/v1/tokens:
+    post:
+      summary: 'Generate Token'
+      description: "Check customer valid/invalid using mobile number and password. If everything is okay, you'll get a success TRUE response.\n\nOtherwise, the request will fail with an error, and a response listing the failed services wish success FALSE response"
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: 400
+                  success: false
+                  message: 'Your mobile & password was incorrect'
+                properties:
+                  status:
+                    type: integer
+                    example: 400
+                  success:
+                    type: boolean
+                    example: false
+                    description: 'The success of this API response is (`true` or `false`).'
+                  message:
+                    type: string
+                    example: 'Your mobile & password was incorrect'
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mobile_number:
+                  type: string
+                  description: 'The mobile number for generate.'
+                  example: '01711111111'
+                password:
+                  type: string
+                  description: 'The password for token-generate.'
+                  example: '123456'
+              required:
+                - mobile_number
+                - password
+      security: []
+  /api/v1/logout:
+    post:
+      summary: Logout
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'bearer your-token'
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: 200
+                  success: true
+                  message: 'logout successfully'
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'logout successfully'
+      tags:
+        - Endpoints
+  /api/v1/category/index:
+    get:
+      summary: 'Category List'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'bearer your-token'
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: 200
+                  success: true
+                  message: 'Category fetching successfully'
+                  data:
+                    categories:
+                      -
+                        id: 1
+                        name: Socks
+                        icon_image_url: null
+                      -
+                        id: 1000
+                        name: 'Wrong Sell'
+                        icon_image_url: 'https://www.onlygfx.com/wp-content/uploads/2018/04/wrong-stamp-1.png'
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Category fetching successfully'
+                  data:
+                    type: object
+                    example:
+                      categories:
+                        -
+                          id: 1
+                          name: Socks
+                          icon_image_url: null
+                        -
+                          id: 1000
+                          name: 'Wrong Sell'
+                          icon_image_url: 'https://www.onlygfx.com/wp-content/uploads/2018/04/wrong-stamp-1.png'
+      tags:
+        - Endpoints
+  /api/v1/shopkeeper/profile:
+    get:
+      summary: 'Shopkeeper Profile'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'bearer your-token'
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: 200
+                  success: true
+                  message: 'Shopkeeper info fetching successfully'
+                  data:
+                    shop_name: 'Perfect Footwear Collection'
+                    shop_image_url: 'http://venturelifestylelimited.com/uploads/shop_images/67.jpeg'
+                    total_amount: '410.00'
+                    total_shop_commission: '80.00'
+                    total_sold: '5.00'
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'Shopkeeper info fetching successfully'
+                  data:
+                    type: object
+                    example:
+                      shop_name: 'Perfect Footwear Collection'
+                      shop_image_url: 'http://venturelifestylelimited.com/uploads/shop_images/67.jpeg'
+                      total_amount: '410.00'
+                      total_shop_commission: '80.00'
+                      total_sold: '5.00'
+      tags:
+        - Endpoints
+  /api/v1/shopkeeper/category/product-sold-summary:
+    post:
+      summary: 'Single Category Product Sold Summary'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'bearer your-token'
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: 200
+                  success: true
+                  message: 'sold-information fetching success'
+                  data:
+                    category_name: Socks
+                    category_fontawesome_icon: socks
+                    shop_name: 'Perfect Footwear Collection'
+                    total_due: '410.00'
+                    total_sold: '5  Pair'
+                    commission: '0.00'
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+                    description: 'The success of this API response is (`true` or `false`).'
+                  message:
+                    type: string
+                    example: 'sold-information fetching success'
+                  data:
+                    type: object
+                    example:
+                      category_name: Socks
+                      category_fontawesome_icon: socks
+                      shop_name: 'Perfect Footwear Collection'
+                      total_due: '410.00'
+                      total_sold: '5  Pair'
+                      commission: '0.00'
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                category_id:
+                  type: integer
+                  description: .
+                  example: 1
+              required:
+                - category_id
+  /api/v1/shopkeeper/category/rack-unsold-product-summary:
+    post:
+      summary: 'Single Category Product Un-Sold Summary'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'bearer your-token'
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: 200
+                  success: true
+                  message: 'sold-information fetching success'
+                  data:
+                    socks:
+                      -
+                        type_id: 6
+                        types_name: Loafer
+                        total: 21
+                      -
+                        type_id: 1
+                        types_name: Long
+                        total: 24
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+                    description: 'The success of this API response is (`true` or `false`).'
+                  message:
+                    type: string
+                    example: 'sold-information fetching success'
+                  data:
+                    type: object
+                    example:
+                      socks:
+                        -
+                          type_id: 6
+                          types_name: Loafer
+                          total: 21
+                        -
+                          type_id: 1
+                          types_name: Long
+                          total: 24
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                category_id:
+                  type: integer
+                  description: .
+                  example: 1
+              required:
+                - category_id
+  /api/v1/shopkeeper/category/typewise-rack-unsold-product:
+    post:
+      summary: 'Single Category Type-wise Un-Sold Product List'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'bearer your-token'
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: 200
+                  success: true
+                  message: 'product fetching success'
+                  data:
+                    socks:
+                      -
+                        printed_socks_code: LN22202221
+                        shop_socks_no: 1
+                        selling_price: 120
+                        shop_socks_code: LN-41
+                      -
+                        printed_socks_code: LN22202222
+                        shop_socks_no: 2
+                        selling_price: 120
+                        shop_socks_code: LN-42
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+                    description: 'The success of this API response is (`true` or `false`).'
+                  message:
+                    type: string
+                    example: 'product fetching success'
+                  data:
+                    type: object
+                    example:
+                      socks:
+                        -
+                          printed_socks_code: LN22202221
+                          shop_socks_no: 1
+                          selling_price: 120
+                          shop_socks_code: LN-41
+                        -
+                          printed_socks_code: LN22202222
+                          shop_socks_no: 2
+                          selling_price: 120
+                          shop_socks_code: LN-42
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                category_id:
+                  type: integer
+                  description: .
+                  example: 1
+                type_id:
+                  type: integer
+                  description: .
+                  example: 1
+              required:
+                - category_id
+                - type_id
+  /api/v1/shopkeeper/category/typewise-search-rack-unsold-product:
+    post:
+      summary: 'Type-wise Product Search'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'bearer your-token'
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: 200
+                  success: true
+                  message: 'socks fetching success'
+                  data:
+                    socks:
+                      -
+                        printed_socks_code: LN222022211
+                        shop_socks_no: 11
+                        selling_price: 120
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+                    description: 'The success of this API response is (`true` or `false`).'
+                  message:
+                    type: string
+                    example: 'socks fetching success'
+                  data:
+                    type: object
+                    example:
+                      socks:
+                        -
+                          printed_socks_code: LN222022211
+                          shop_socks_no: 11
+                          selling_price: 120
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                category_id:
+                  type: string
+                  description: ''
+                  example: voluptas
+                type_id:
+                  type: string
+                  description: ''
+                  example: non
+                socks_search_text:
+                  type: string
+                  description: ''
+                  example: ut
+                LO20403221:
+                  type: string
+                  description: .
+                  example: '1'
+              required:
+                - category_id
+                - type_id
+                - socks_search_text
+                - LO20403221
+  /api/v1/shopkeeper/rack-current-unsold-products:
+    post:
+      summary: 'Shop Un-sold Product List'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'bearer your-token'
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{{\n\t\"status\": 200,\n\t\"success\": true,\n\t\"message\": \"socks fetching success\",\n\t\"data\": {\n\t\t\"socks\": [\n\t\t\t{\n\t\t\t\t\"printed_socks_code\": \"LL20412212\",\n\t\t\t\t\"shop_socks_no\": 0,\n\t\t\t\t\"selling_price\": 75\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"printed_socks_code\": \"LL20412213\",\n\t\t\t\t\"shop_socks_no\": 0,\n\t\t\t\t\"selling_price\": 75\n\t\t\t}\n\t\t]\n\t}\n}"
+      tags:
+        - Endpoints
+  /api/v1/shopkeeper/unsold/search-product:
+    post:
+      summary: 'Unsold Product Search'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'bearer your-token'
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: 200
+                  success: true
+                  message: 'socks fetching success'
+                  data:
+                    socks:
+                      -
+                        printed_socks_code: LL204122110
+                        shop_socks_no: 0
+                        selling_price: 75
+                      -
+                        printed_socks_code: LL204122111
+                        shop_socks_no: 0
+                        selling_price: 75
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+                    description: 'The success of this API response is (`true` or `false`).'
+                  message:
+                    type: string
+                    example: 'socks fetching success'
+                  data:
+                    type: object
+                    example:
+                      socks:
+                        -
+                          printed_socks_code: LL204122110
+                          shop_socks_no: 0
+                          selling_price: 75
+                        -
+                          printed_socks_code: LL204122111
+                          shop_socks_no: 0
+                          selling_price: 75
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                socks_search_text:
+                  type: string
+                  description: .
+                  example: '1'
+              required:
+                - socks_search_text
+  /api/v1/shopkeeper/all-sold-product-list:
+    get:
+      summary: 'Sold Product List'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'bearer your-token'
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: 200
+                  success: true
+                  message: 'Socks fetching successfully'
+                  data:
+                    products:
+                      -
+                        printed_socks_code: LO20403222
+                        shop_socks_no: 2
+                        shop_socks_code: LO-62
+                        selling_price: 80
+                      -
+                        printed_socks_code: SH217032236
+                        shop_socks_no: 36
+                        shop_socks_code: SH-736
+                        selling_price: 100
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+                    description: 'The success of this API response is (`true` or `false`).'
+                  message:
+                    type: string
+                    example: 'Socks fetching successfully'
+                  data:
+                    type: object
+                    example:
+                      products:
+                        -
+                          printed_socks_code: LO20403222
+                          shop_socks_no: 2
+                          shop_socks_code: LO-62
+                          selling_price: 80
+                        -
+                          printed_socks_code: SH217032236
+                          shop_socks_no: 36
+                          shop_socks_code: SH-736
+                          selling_price: 100
+      tags:
+        - Endpoints
+  /api/v1/shopkeeper/sold-product/search-product:
+    post:
+      summary: 'Search Sold Product List'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'bearer your-token'
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: 200
+                  success: true
+                  message: 'Socks seraching successfully'
+                  data:
+                    products:
+                      -
+                        product_code: LL20412211
+                        printed_socks_code: LL20412211
+                        shop_socks_no: 0
+                        shop_socks_code: ''
+                        selling_price: 75
+                      -
+                        product_code: LL204122122
+                        printed_socks_code: LL204122122
+                        shop_socks_no: 0
+                        shop_socks_code: ''
+                        selling_price: 75
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+                    description: 'The success of this API response is (`true` or `false`).'
+                  message:
+                    type: string
+                    example: 'Socks seraching successfully'
+                  data:
+                    type: object
+                    example:
+                      products:
+                        -
+                          product_code: LL20412211
+                          printed_socks_code: LL20412211
+                          shop_socks_no: 0
+                          shop_socks_code: ''
+                          selling_price: 75
+                        -
+                          product_code: LL204122122
+                          printed_socks_code: LL204122122
+                          shop_socks_no: 0
+                          shop_socks_code: ''
+                          selling_price: 75
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                product_code:
+                  type: string
+                  description: .
+                  example: '''122'''
+              required:
+                - product_code
+  '/api/v1/shopkeeper/product/product-details/{product_id}':
+    get:
+      summary: 'Single Product Details'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'bearer your-token'
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: 200
+                  success: true
+                  message: 'Data fetching successfully'
+                  data:
+                    product:
+                      category_name: Socks
+                      brand_name: 'Pegasus Loafer'
+                      size_name: "10/11/LF\r\n"
+                      types_name: Loafer
+                      selling_price: '80.00'
+                      socks_code: LO20403221(LO-61)
+                      product_image: 'https://cdn.shoplightspeed.com/shops/609731/files/20893344/1500x4000x3/pegasus-retro-stripe-mens-crew-sock-from-sock-it-t.jpg'
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+                    description: 'The success of this API response is (`true` or `false`).'
+                  message:
+                    type: string
+                    example: 'Data fetching successfully'
+                  data:
+                    type: object
+                    example:
+                      product:
+                        category_name: Socks
+                        brand_name: 'Pegasus Loafer'
+                        size_name: "10/11/LF\r\n"
+                        types_name: Loafer
+                        selling_price: '80.00'
+                        socks_code: LO20403221(LO-61)
+                        product_image: 'https://cdn.shoplightspeed.com/shops/609731/files/20893344/1500x4000x3/pegasus-retro-stripe-mens-crew-sock-from-sock-it-t.jpg'
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                category_id:
+                  type: integer
+                  description: .
+                  example: 1
+                type_id:
+                  type: integer
+                  description: .
+                  example: 1
+                socks_search_text:
+                  type: string
+                  description: .
+                  example: '122'
+              required:
+                - category_id
+                - type_id
+                - socks_search_text
+    parameters:
+      -
+        in: path
+        name: product_id
+        description: 'The ID of the product.'
+        example: qui
+        required: true
+        schema:
+          type: string
+  /api/v1/shopkeeper/product/product-sell:
+    post:
+      summary: 'Product Sell'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'bearer your-token'
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: 200
+                  success: true
+                  message: 'socks sold successfully'
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+                    description: 'The success of this API response is (`true` or `false`).'
+                  message:
+                    type: string
+                    example: 'socks sold successfully'
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                product_code:
+                  type: string
+                  description: .
+                  example: SC20412211
+              required:
+                - product_code
+  /api/v1/shopkeeper/wrong-sold/product-unsold:
+    post:
+      summary: 'Product Un-Sold'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'bearer your-token'
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: 200
+                  success: true
+                  message: 'SC20412211 product unsold mark successfully'
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+                    description: 'The success of this API response is (`true` or `false`).'
+                  message:
+                    type: string
+                    example: 'SC20412211 product unsold mark successfully'
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                product_code:
+                  type: string
+                  description: .
+                  example: SC20412211
+              required:
+                - product_code
+  /api/v1/product/check-valid-product-qr:
+    post:
+      summary: 'Check Qr Code'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'bearer your-token'
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: 200
+                  success: true
+                  message: 'Valid product QR code'
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+                    description: 'The success of this API response is (`true` or `false`).'
+                  message:
+                    type: string
+                    example: 'Valid product QR code'
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                qr_code:
+                  type: string
+                  description: .
+                  example: SH217032231
+              required:
+                - qr_code
+  /api/v1/shopkeeper/product/refill-voucher:
+    get:
+      summary: 'Product Re-Fill Voucher'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'bearer your-token'
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: 200
+                  success: true
+                  message: 'Your product voucher list fetching successfully'
+                  data:
+                    vouchers:
+                      -
+                        voucher_name: 2022-03-17-VLS2-Refill
+                        voucher_date: '17th March, 2022'
+                        location: 'http://venturelifestylelimited.com/public/voucher/2022-03-17-VLS2-Refill.pdf'
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+                    description: 'The success of this API response is (`true` or `false`).'
+                  message:
+                    type: string
+                    example: 'Your product voucher list fetching successfully'
+                  data:
+                    type: object
+                    example:
+                      vouchers:
+                        -
+                          voucher_name: 2022-03-17-VLS2-Refill
+                          voucher_date: '17th March, 2022'
+                          location: 'http://venturelifestylelimited.com/public/voucher/2022-03-17-VLS2-Refill.pdf'
+      tags:
+        - Endpoints
+  /api/v1/shopkeeper/product/bill-voucher:
+    get:
+      summary: 'Product Bill Voucher'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'bearer your-token'
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  status: 200
+                  success: true
+                  message: 'Your bill voucher list fetching successfully'
+                  data:
+                    vouchers:
+                      -
+                        voucher_name: 'March 2022'
+                        voucher_date: '2nd April, 2022'
+                        location: 'http://venturelifestylelimited.com/public/Bill/voucher/90000180125-bill.pdf'
+                      -
+                        voucher_name: 'February 2022'
+                        voucher_date: '3rd March, 2022'
+                        location: 'http://venturelifestylelimited.com/public/Bill/voucher/90000148927-bill.pdf'
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+                    description: 'The success of this API response is (`true` or `false`).'
+                  message:
+                    type: string
+                    example: 'Your bill voucher list fetching successfully'
+                  data:
+                    type: object
+                    example:
+                      vouchers:
+                        -
+                          voucher_name: 'March 2022'
+                          voucher_date: '2nd April, 2022'
+                          location: 'http://venturelifestylelimited.com/public/Bill/voucher/90000180125-bill.pdf'
+                        -
+                          voucher_name: 'February 2022'
+                          voucher_date: '3rd March, 2022'
+                          location: 'http://venturelifestylelimited.com/public/Bill/voucher/90000148927-bill.pdf'
+      tags:
+        - Endpoints
+  /api/v1/shopkeeper/activity:
+    get:
+      summary: 'Shop Activity Log'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'bearer your-token'
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n\t\"status\": 200,\n\t\"success\": true,\n\t\"message\": \"Shop activity fetching success\",\n\t\"data\": {\n\t\t\"shop_activity\": [\n\t\t\t{\n\t\t\t\t\"message\": \"SOCKS_BILL_COLLECTION_BY_AGENT\",\n\t\t\t\t\"operation_date\": \"2022-04-02\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"message\": \"SOCKS_SOLD_BY_SHOPKEEPER\",\n\t\t\t\t\"operation_date\": \"2022-03-31\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"message\": \"SOCKS_SOLD_BY_SHOPKEEPER\",\n\t\t\t\t\"operation_date\": \"2022-03-23\"\n\t\t\t},\n\t\t]\n\t}\n}"
+      tags:
+        - Endpoints
+tags:
+  -
+    name: Endpoints
+    description: ''

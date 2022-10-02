@@ -1,0 +1,1 @@
+UPDATE rack_products set status=3,shocks_bill_no='202201261' where shop_id='23' and rack_code='VLS2' and status=1 and month(sold_date)='01' and year(sold_date)='2022'  

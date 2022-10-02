@@ -1,0 +1,1 @@
+SELECT * FROM products where brand_id='32' and brand_size_id='25' and type_id='13' and com_id='2' order by id desc limit 1

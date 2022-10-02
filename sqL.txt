@@ -1,0 +1,56 @@
+SELECT *,
+       pr_new.counter_figure AS new_shop_days,
+       pr_old.counter_figure AS old_shop_days
+FROM   (SELECT sh.*,
+               Datediff(Curdate(), starting_count_date) AS
+               last_payment_days_count,
+               'bill_effective_day_for_new',
+               'bill_effective_day_for_old'
+        FROM   (SELECT rack_bill.*,
+                       ( CASE
+                           WHEN rack_bill.last_billing_date IS NULL THEN 1
+                           ELSE 0
+                         end ) AS is_new_shop,
+                       ( CASE
+                           WHEN rack_bill.last_billing_date IS NULL THEN
+                           shop_entry_date
+                           ELSE rack_bill.last_billing_date
+                         end ) AS starting_count_date
+                FROM   (SELECT rack.*,
+                               (SELECT billing_year_month
+                                FROM   shock_bills sb
+                                WHERE  rack_code = rack.rack_code
+                                ORDER  BY billing_year_month DESC
+                                LIMIT  1)                          AS
+                               last_billing_month,
+                               (SELECT Date(entry_datetime)
+                                FROM   shock_bills sb
+                                WHERE  rack_code = rack.rack_code
+                                ORDER  BY billing_year_month DESC
+                                LIMIT  1)                          AS
+                               last_billing_date
+                               ,
+                               (SELECT shop_reg_date
+                                FROM   rack_mapping
+                                WHERE  rack_code = rack.rack_code) AS
+                               shop_entry_date
+                        FROM   (SELECT rack_code,
+                                       sold_year,
+                                       sold_month,
+                                       shop_id,
+                                       Sum(selling_price) AS total_bill
+                                FROM   (SELECT Year(sold_date)  AS sold_year,
+                                               Month(sold_date) AS sold_month,
+                                               rack_code,
+                                               shop_id,
+                                               selling_price
+                                        FROM   rack_products
+                                        WHERE  status = 1) rp
+                                GROUP  BY rack_code,
+                                          shop_id,
+                                          sold_year,
+                                          sold_month) rack) rack_bill) sh) bl
+       LEFT JOIN paremeter pr_new
+              ON pr_new.counter_name = bl.bill_effective_day_for_new
+       LEFT JOIN paremeter pr_old
+              ON pr_old.counter_name = bl.bill_effective_day_for_old 

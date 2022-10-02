@@ -1,0 +1,5 @@
+<<<<<<< HEAD
+{"agent_commission_persentage":5,"shop_commission_persentage":20}
+=======
+{"agent_commission_persentage":"5.00","shop_commission_persentage":"25.00"}
+>>>>>>> f5637a8a2e693190d55ebcb37c9bb60af5a77d00

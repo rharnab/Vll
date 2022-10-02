@@ -1,0 +1,450 @@
+SELECT
+                   st.style_code,
+                   bd.name as brand_name,
+                   bz.name as size_name,
+                   st.per_packet_shocks_quantity,
+                   st.remaining_socks,
+                   st.individual_buy_price,
+                   st.individual_sale_price 
+               FROM
+                   stocks st 
+                   left join
+                   brands bd 
+                   on st.brand_id = bd.id 
+                   left join
+                   brand_sizes bz 
+                   on st.brand_size_id = bz.id 
+               where 
+                   remaining_socks > 0 and st.type_id = 6 and (status=0 or status=5) and st.sale_type = 2  and st.style_code not in ('')  order by st.lot_no,st.brand_id
+SELECT
+                   st.style_code,
+                   bd.name as brand_name,
+                   bz.name as size_name,
+                   st.per_packet_shocks_quantity,
+                   st.remaining_socks,
+                   st.individual_buy_price,
+                   st.individual_sale_price 
+               FROM
+                   stocks st 
+                   left join
+                   brands bd 
+                   on st.brand_id = bd.id 
+                   left join
+                   brand_sizes bz 
+                   on st.brand_size_id = bz.id 
+               where 
+                   remaining_socks > 0 and st.type_id = 1 and (status=0 or status=5) and st.sale_type = 2  and st.style_code not in ('')  order by st.lot_no,st.brand_id
+SELECT
+                   st.style_code,
+                   bd.name as brand_name,
+                   bz.name as size_name,
+                   st.per_packet_shocks_quantity,
+                   st.remaining_socks,
+                   st.individual_buy_price,
+                   st.individual_sale_price 
+               FROM
+                   stocks st 
+                   left join
+                   brands bd 
+                   on st.brand_id = bd.id 
+                   left join
+                   brand_sizes bz 
+                   on st.brand_size_id = bz.id 
+               where 
+                   remaining_socks > 0 and st.type_id = 1 and (status=0 or status=5) and st.sale_type = 2  and st.style_code not in ('')  order by st.lot_no,st.brand_id
+SELECT
+                   st.style_code,
+                   bd.name as brand_name,
+                   bz.name as size_name,
+                   st.per_packet_shocks_quantity,
+                   st.remaining_socks,
+                   st.individual_buy_price,
+                   st.individual_sale_price 
+               FROM
+                   stocks st 
+                   left join
+                   brands bd 
+                   on st.brand_id = bd.id 
+                   left join
+                   brand_sizes bz 
+                   on st.brand_size_id = bz.id 
+               where 
+                   remaining_socks > 0 and st.type_id = 1 and (status=0 or status=5) and st.sale_type = 2  and st.style_code not in ('')  order by st.lot_no,st.brand_id
+SELECT
+                   st.style_code,
+                   bd.name as brand_name,
+                   bz.name as size_name,
+                   st.per_packet_shocks_quantity,
+                   st.remaining_socks,
+                   st.individual_buy_price,
+                   st.individual_sale_price 
+               FROM
+                   stocks st 
+                   left join
+                   brands bd 
+                   on st.brand_id = bd.id 
+                   left join
+                   brand_sizes bz 
+                   on st.brand_size_id = bz.id 
+               where 
+                   remaining_socks > 0 and st.type_id = 1 and (status=0 or status=5) and st.sale_type = 2  and st.style_code not in ('')  order by st.lot_no,st.brand_id
+SELECT
+                   st.style_code,
+                   bd.name as brand_name,
+                   bz.name as size_name,
+                   st.per_packet_shocks_quantity,
+                   st.remaining_socks,
+                   st.individual_buy_price,
+                   st.individual_sale_price 
+               FROM
+                   stocks st 
+                   left join
+                   brands bd 
+                   on st.brand_id = bd.id 
+                   left join
+                   brand_sizes bz 
+                   on st.brand_size_id = bz.id 
+               where 
+                   remaining_socks > 0 and st.type_id = 1 and (status=0 or status=5) and st.sale_type = 2  and st.style_code not in ('')  order by st.lot_no,st.brand_id
+SELECT
+                   st.style_code,
+                   bd.name as brand_name,
+                   bz.name as size_name,
+                   st.per_packet_shocks_quantity,
+                   st.remaining_socks,
+                   st.individual_buy_price,
+                   st.individual_sale_price 
+               FROM
+                   stocks st 
+                   left join
+                   brands bd 
+                   on st.brand_id = bd.id 
+                   left join
+                   brand_sizes bz 
+                   on st.brand_size_id = bz.id 
+               where 
+                   remaining_socks > 0 and st.type_id = 1 and (status=0 or status=5) and st.sale_type = 2  and st.style_code not in ('')  order by st.lot_no,st.brand_id
+SELECT
+                   st.style_code,
+                   bd.name as brand_name,
+                   bz.name as size_name,
+                   st.per_packet_shocks_quantity,
+                   st.remaining_socks,
+                   st.individual_buy_price,
+                   st.individual_sale_price 
+               FROM
+                   stocks st 
+                   left join
+                   brands bd 
+                   on st.brand_id = bd.id 
+                   left join
+                   brand_sizes bz 
+                   on st.brand_size_id = bz.id 
+               where 
+                   remaining_socks > 0 and st.type_id = 1 and (status=0 or status=5) and st.sale_type = 2  and st.style_code not in ('')  order by st.lot_no,st.brand_id
+SELECT
+                   st.style_code,
+                   bd.name as brand_name,
+                   bz.name as size_name,
+                   st.per_packet_shocks_quantity,
+                   st.remaining_socks,
+                   st.individual_buy_price,
+                   st.individual_sale_price 
+               FROM
+                   stocks st 
+                   left join
+                   brands bd 
+                   on st.brand_id = bd.id 
+                   left join
+                   brand_sizes bz 
+                   on st.brand_size_id = bz.id 
+               where 
+                   remaining_socks > 0 and st.type_id = 3 and (status=0 or status=5) and st.sale_type = 2  and st.style_code not in ('104P55','')  order by st.lot_no,st.brand_id
+SELECT
+                   st.style_code,
+                   bd.name as brand_name,
+                   bz.name as size_name,
+                   st.per_packet_shocks_quantity,
+                   st.remaining_socks,
+                   st.individual_buy_price,
+                   st.individual_sale_price 
+               FROM
+                   stocks st 
+                   left join
+                   brands bd 
+                   on st.brand_id = bd.id 
+                   left join
+                   brand_sizes bz 
+                   on st.brand_size_id = bz.id 
+               where 
+                   remaining_socks > 0 and st.type_id = 5 and (status=0 or status=5) and st.sale_type = 2  and st.style_code not in ('104P55','116C52','')  order by st.lot_no,st.brand_id
+SELECT
+                   st.style_code,
+                   bd.name as brand_name,
+                   bz.name as size_name,
+                   st.per_packet_shocks_quantity,
+                   st.remaining_socks,
+                   st.individual_buy_price,
+                   st.individual_sale_price 
+               FROM
+                   stocks st 
+                   left join
+                   brands bd 
+                   on st.brand_id = bd.id 
+                   left join
+                   brand_sizes bz 
+                   on st.brand_size_id = bz.id 
+               where 
+                   remaining_socks > 0 and st.type_id = 10 and (status=0 or status=5) and st.sale_type = 2  and st.style_code not in ('104P55','116C52','')  order by st.lot_no,st.brand_id
+SELECT
+                   st.style_code,
+                   bd.name as brand_name,
+                   bz.name as size_name,
+                   st.per_packet_shocks_quantity,
+                   st.remaining_socks,
+                   st.individual_buy_price,
+                   st.individual_sale_price 
+               FROM
+                   stocks st 
+                   left join
+                   brands bd 
+                   on st.brand_id = bd.id 
+                   left join
+                   brand_sizes bz 
+                   on st.brand_size_id = bz.id 
+               where 
+                   remaining_socks > 0 and st.type_id = 1 and (status=0 or status=5) and st.sale_type = 2  and st.style_code not in ('')  order by st.lot_no,st.brand_id
+SELECT
+                   st.style_code,
+                   bd.name as brand_name,
+                   bz.name as size_name,
+                   st.per_packet_shocks_quantity,
+                   st.remaining_socks,
+                   st.individual_buy_price,
+                   st.individual_sale_price 
+               FROM
+                   stocks st 
+                   left join
+                   brands bd 
+                   on st.brand_id = bd.id 
+                   left join
+                   brand_sizes bz 
+                   on st.brand_size_id = bz.id 
+               where 
+                   remaining_socks > 0 and st.type_id = 3 and (status=0 or status=5) and st.sale_type = 2  and st.style_code not in ('104P55','')  order by st.lot_no,st.brand_id
+SELECT
+                   st.style_code,
+                   bd.name as brand_name,
+                   bz.name as size_name,
+                   st.per_packet_shocks_quantity,
+                   st.remaining_socks,
+                   st.individual_buy_price,
+                   st.individual_sale_price 
+               FROM
+                   stocks st 
+                   left join
+                   brands bd 
+                   on st.brand_id = bd.id 
+                   left join
+                   brand_sizes bz 
+                   on st.brand_size_id = bz.id 
+               where 
+                   remaining_socks > 0 and st.type_id = 10 and (status=0 or status=5) and st.sale_type = 2  and st.style_code not in ('104P55','116C52','')  order by st.lot_no,st.brand_id
+SELECT
+                   st.style_code,
+                   bd.name as brand_name,
+                   bz.name as size_name,
+                   st.per_packet_shocks_quantity,
+                   st.remaining_socks,
+                   st.individual_buy_price,
+                   st.individual_sale_price 
+               FROM
+                   stocks st 
+                   left join
+                   brands bd 
+                   on st.brand_id = bd.id 
+                   left join
+                   brand_sizes bz 
+                   on st.brand_size_id = bz.id 
+               where 
+                   remaining_socks > 0 and st.type_id = 1 and (status=0 or status=5) and st.sale_type = 2  and st.style_code not in ('')  order by st.lot_no,st.brand_id
+SELECT
+                   st.style_code,
+                   bd.name as brand_name,
+                   bz.name as size_name,
+                   st.per_packet_shocks_quantity,
+                   st.remaining_socks,
+                   st.individual_buy_price,
+                   st.individual_sale_price 
+               FROM
+                   stocks st 
+                   left join
+                   brands bd 
+                   on st.brand_id = bd.id 
+                   left join
+                   brand_sizes bz 
+                   on st.brand_size_id = bz.id 
+               where 
+                   remaining_socks > 0 and st.type_id = 3 and (status=0 or status=5) and st.sale_type = 2  and st.style_code not in ('104P55','')  order by st.lot_no,st.brand_id
+SELECT
+                   st.style_code,
+                   bd.name as brand_name,
+                   bz.name as size_name,
+                   st.per_packet_shocks_quantity,
+                   st.remaining_socks,
+                   st.individual_buy_price,
+                   st.individual_sale_price 
+               FROM
+                   stocks st 
+                   left join
+                   brands bd 
+                   on st.brand_id = bd.id 
+                   left join
+                   brand_sizes bz 
+                   on st.brand_size_id = bz.id 
+               where 
+                   remaining_socks > 0 and st.type_id = 10 and (status=0 or status=5) and st.sale_type = 2  and st.style_code not in ('104P55','116C52','')  order by st.lot_no,st.brand_id
+SELECT
+                   st.style_code,
+                   bd.name as brand_name,
+                   bz.name as size_name,
+                   st.per_packet_shocks_quantity,
+                   st.remaining_socks,
+                   st.individual_buy_price,
+                   st.individual_sale_price 
+               FROM
+                   stocks st 
+                   left join
+                   brands bd 
+                   on st.brand_id = bd.id 
+                   left join
+                   brand_sizes bz 
+                   on st.brand_size_id = bz.id 
+               where 
+                   remaining_socks > 0 and st.type_id = 1 and (status=0 or status=5) and st.sale_type = 2  and st.style_code not in ('')  order by st.lot_no,st.brand_id
+SELECT
+                   st.style_code,
+                   bd.name as brand_name,
+                   bz.name as size_name,
+                   st.per_packet_shocks_quantity,
+                   st.remaining_socks,
+                   st.individual_buy_price,
+                   st.individual_sale_price 
+               FROM
+                   stocks st 
+                   left join
+                   brands bd 
+                   on st.brand_id = bd.id 
+                   left join
+                   brand_sizes bz 
+                   on st.brand_size_id = bz.id 
+               where 
+                   remaining_socks > 0 and st.type_id = 3 and (status=0 or status=5) and st.sale_type = 2  and st.style_code not in ('104P56','')  order by st.lot_no,st.brand_id
+SELECT
+                   st.style_code,
+                   bd.name as brand_name,
+                   bz.name as size_name,
+                   st.per_packet_shocks_quantity,
+                   st.remaining_socks,
+                   st.individual_buy_price,
+                   st.individual_sale_price 
+               FROM
+                   stocks st 
+                   left join
+                   brands bd 
+                   on st.brand_id = bd.id 
+                   left join
+                   brand_sizes bz 
+                   on st.brand_size_id = bz.id 
+               where 
+                   remaining_socks > 0 and st.type_id = 10 and (status=0 or status=5) and st.sale_type = 2  and st.style_code not in ('104P56','116C53','')  order by st.lot_no,st.brand_id
+SELECT
+                   st.style_code,
+                   bd.name as brand_name,
+                   bz.name as size_name,
+                   st.per_packet_shocks_quantity,
+                   st.remaining_socks,
+                   st.individual_buy_price,
+                   st.individual_sale_price 
+               FROM
+                   stocks st 
+                   left join
+                   brands bd 
+                   on st.brand_id = bd.id 
+                   left join
+                   brand_sizes bz 
+                   on st.brand_size_id = bz.id 
+               where 
+                   remaining_socks > 0 and st.type_id = 1 and (status=0 or status=5) and st.sale_type = 2  and st.style_code not in ('')  order by st.lot_no,st.brand_id
+SELECT
+                   st.style_code,
+                   bd.name as brand_name,
+                   bz.name as size_name,
+                   st.per_packet_shocks_quantity,
+                   st.remaining_socks,
+                   st.individual_buy_price,
+                   st.individual_sale_price 
+               FROM
+                   stocks st 
+                   left join
+                   brands bd 
+                   on st.brand_id = bd.id 
+                   left join
+                   brand_sizes bz 
+                   on st.brand_size_id = bz.id 
+               where 
+                   remaining_socks > 0 and st.type_id = 3 and (status=0 or status=5) and st.sale_type = 2  and st.style_code not in ('')  order by st.lot_no,st.brand_id
+SELECT
+                   st.style_code,
+                   bd.name as brand_name,
+                   bz.name as size_name,
+                   st.per_packet_shocks_quantity,
+                   st.remaining_socks,
+                   st.individual_buy_price,
+                   st.individual_sale_price 
+               FROM
+                   stocks st 
+                   left join
+                   brands bd 
+                   on st.brand_id = bd.id 
+                   left join
+                   brand_sizes bz 
+                   on st.brand_size_id = bz.id 
+               where 
+                   remaining_socks > 0 and st.type_id = 1 and (status=0 or status=5) and st.sale_type = 2  and st.style_code not in ('')  order by st.lot_no,st.brand_id
+SELECT
+                   st.style_code,
+                   bd.name as brand_name,
+                   bz.name as size_name,
+                   st.per_packet_shocks_quantity,
+                   st.remaining_socks,
+                   st.individual_buy_price,
+                   st.individual_sale_price 
+               FROM
+                   stocks st 
+                   left join
+                   brands bd 
+                   on st.brand_id = bd.id 
+                   left join
+                   brand_sizes bz 
+                   on st.brand_size_id = bz.id 
+               where 
+                   remaining_socks > 0 and st.type_id = 1 and (status=0 or status=5) and st.sale_type = 2  and st.style_code not in ('')  order by st.lot_no,st.brand_id
+SELECT
+                   st.style_code,
+                   bd.name as brand_name,
+                   bz.name as size_name,
+                   st.per_packet_shocks_quantity,
+                   st.remaining_socks,
+                   st.individual_buy_price,
+                   st.individual_sale_price 
+               FROM
+                   stocks st 
+                   left join
+                   brands bd 
+                   on st.brand_id = bd.id 
+                   left join
+                   brand_sizes bz 
+                   on st.brand_size_id = bz.id 
+               where 
+                   remaining_socks > 0 and st.type_id = 3 and (status=0 or status=5) and st.sale_type = 2  and st.style_code not in ('231P0-1','')  order by st.lot_no,st.brand_id

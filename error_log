@@ -1,0 +1,27 @@
+[19-Feb-2022 15:40:45 Asia/Dhaka] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'pegasus_socks.users' doesn't exist in /home/sppcup4v0p6f/public_html/vll/vendor/laravel/framework/src/Illuminate/Database/Connection.php:359
+Stack trace:
+#0 /home/sppcup4v0p6f/public_html/vll/vendor/laravel/framework/src/Illuminate/Database/Connection.php(359): PDO->prepare('select * from `...')
+#1 /home/sppcup4v0p6f/public_html/vll/vendor/laravel/framework/src/Illuminate/Database/Connection.php(696): Illuminate\Database\Connection->Illuminate\Database\{closure}('select * from `...', Array)
+#2 /home/sppcup4v0p6f/public_html/vll/vendor/laravel/framework/src/Illuminate/Database/Connection.php(663): Illuminate\Database\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#3 /home/sppcup4v0p6f/public_html/vll/vendor/laravel/framework/src/Illuminate/Database/Connection.php(367): Illuminate\Database\Connection->run('select * from `...', Array, Object(Closure))
+#4 /home/sppcup4v0p6f/public_html/vll/vendor/laravel/ in /home/sppcup4v0p6f/public_html/vll/vendor/laravel/framework/src/Illuminate/Database/Connection.php on line 703
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> f5637a8a2e693190d55ebcb37c9bb60af5a77d00
+[27-Feb-2022 18:24:25 Asia/Dhaka] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'pegasus_socks.users' doesn't exist in /home/sppcup4v0p6f/public_html/vll/vendor/laravel/framework/src/Illuminate/Database/Connection.php:359
+Stack trace:
+#0 /home/sppcup4v0p6f/public_html/vll/vendor/laravel/framework/src/Illuminate/Database/Connection.php(359): PDO->prepare('select * from `...')
+#1 /home/sppcup4v0p6f/public_html/vll/vendor/laravel/framework/src/Illuminate/Database/Connection.php(696): Illuminate\Database\Connection->Illuminate\Database\{closure}('select * from `...', Array)
+#2 /home/sppcup4v0p6f/public_html/vll/vendor/laravel/framework/src/Illuminate/Database/Connection.php(663): Illuminate\Database\Connection->runQueryCallback('select * from `...', Array, Object(Closure))
+#3 /home/sppcup4v0p6f/public_html/vll/vendor/laravel/framework/src/Illuminate/Database/Connection.php(367): Illuminate\Database\Connection->run('select * from `...', Array, Object(Closure))
+#4 /home/sppcup4v0p6f/public_html/vll/vendor/laravel/ in /home/sppcup4v0p6f/public_html/vll/vendor/laravel/framework/src/Illuminate/Database/Connection.php on line 703
+[28-Feb-2022 11:43:06 Asia/Dhaka] PHP Fatal error:  Cannot use App\Http\Controllers\Report\StatusWiseReportController as StatusWiseReportController because the name is already in use in /home/sppcup4v0p6f/public_html/vll/routes/web.php on line 71
+[28-Feb-2022 11:44:07 Asia/Dhaka] PHP Fatal error:  Cannot use App\Http\Controllers\Report\StatusWiseReportController as StatusWiseReportController because the name is already in use in /home/sppcup4v0p6f/public_html/vll/routes/web.php on line 71
+[28-Feb-2022 11:44:14 Asia/Dhaka] PHP Fatal error:  Cannot use App\Http\Controllers\Report\StatusWiseReportController as StatusWiseReportController because the name is already in use in /home/sppcup4v0p6f/public_html/vll/routes/web.php on line 71
+[28-Feb-2022 11:44:29 Asia/Dhaka] PHP Fatal error:  Cannot use App\Http\Controllers\Report\StatusWiseReportController as StatusWiseReportController because the name is already in use in /home/sppcup4v0p6f/public_html/vll/routes/web.php on line 71
+<<<<<<< HEAD
+>>>>>>> 48f93cc56734d3596fe15415ccd7cb35ef8d8d77
+=======
+>>>>>>> f5637a8a2e693190d55ebcb37c9bb60af5a77d00

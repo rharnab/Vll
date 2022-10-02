@@ -1,0 +1,852 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "http:\/\/localhost\/pegasus-socks\/"
+        }
+    ],
+    "info": {
+        "name": "VLL Mobile Application API",
+        "_postman_id": "2c7a13d7-4796-486b-a708-2fbdf9986f58",
+        "description": "This api documentation for shurovi mobile application development",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Authentication",
+            "description": "Check customer valid\/invalid using mobile number and password. If everything is okay, you'll get a success TRUE response.\n\nOtherwise, the request will fail with an error, and a response listing the failed services wish success FALSE response",
+            "item": [
+                {
+                    "name": "Generate Token",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/tokens",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/tokens"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"mobile_number\":\"01711111111\",\"password\":\"123456\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n     \"status\": 200,\n     \"success\": true,\n     \"message\": \"Login successfully\",\n     \"data\": {\n         \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTY0MDg1NTUxNywiZXhwIjoxNjQwODU5MTE3LCJuYmYiOjE2NDA4NTU1MTcsImp0aSI6InhqMzQ5eXMwSHF0OGZ0QWUiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.SSuVeFSEo4hh9p6arwrw7tJKc43F7n7vVMzyXmZudOA\",\n         \"token_type\": \"bearer\",\n         \"expires_in\": 3600\n      }\n  }",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n       \"status\": 400,\n       \"success\": false,\n       \"message\": \"Your mobile & password was incorrect\"\n   }",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Logout",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/logout",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/logout"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "bearer your-token"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n      \"status\": 200,\n      \"success\": true,\n      \"message\": \"logout successfully\"\n  }",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Product Category",
+            "description": "",
+            "item": [
+                {
+                    "name": "Category List",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/category\/index",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/category\/index"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "bearer your-token"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n   \"status\": 200,\n   \"success\": true,\n   \"message\": \"Category fetching successfully\",\n   \"data\": {\n       \"categories\": [\n           {\n               \"id\": 1,\n               \"name\": \"Socks\",\n               \"icon_image_url\": null\n           },\n           {\n               \"id\": 1000,\n               \"name\": \"Wrong Sell\",\n               \"icon_image_url\": \"https:\/\/www.onlygfx.com\/wp-content\/uploads\/2018\/04\/wrong-stamp-1.png\"\n           }\n       ]\n   }\n}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Shopkeeper",
+            "description": "",
+            "item": [
+                {
+                    "name": "Shopkeeper Profile",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/shopkeeper\/profile",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/shopkeeper\/profile"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "bearer your-token"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\t\t\"status\": 200,\n\t\"success\": true,\n\t\"message\": \"Shopkeeper info fetching successfully\",\n\t\"data\": {\n\t\t\"shop_name\": \"Perfect Footwear Collection\",\n\t\t\"shop_image_url\": \"http:\/\/venturelifestylelimited.com\/uploads\/shop_images\/67.jpeg\",\n\t\t\"total_amount\": \"410.00\",\n\t\t\"total_shop_commission\": \"80.00\",\n\t\t\"total_sold\": \"5.00\"\n\t}\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Single Product Details",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/shopkeeper\/product\/product-details\/:product_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/shopkeeper\/product\/product-details\/:product_id",
+                            "variable": [
+                                {
+                                    "id": "product_id",
+                                    "key": "product_id",
+                                    "value": "temporibus",
+                                    "description": "The ID of the product."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "bearer your-token"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"category_id\":1,\"type_id\":1,\"socks_search_text\":\"122\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\t\"status\": 200,\n\t\"success\": true,\n\t\"message\": \"Data fetching successfully\",\n\t\"data\": {\n\t\t\"product\": {\n\t\t\t\"category_name\": \"Socks\",\n\t\t\t\"brand_name\": \"Pegasus Loafer\",\n\t\t\t\"size_name\": \"10\/11\/LF\\r\\n\",\n\t\t\t\"types_name\": \"Loafer\",\n\t\t\t\"selling_price\": \"80.00\",\n\t\t\t\"socks_code\": \"LO20403221(LO-61)\",\n\t\t\t\"product_image\": \"https:\/\/cdn.shoplightspeed.com\/shops\/609731\/files\/20893344\/1500x4000x3\/pegasus-retro-stripe-mens-crew-sock-from-sock-it-t.jpg\"\n\t\t}\n\t}\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Single Category Product Sold Summary",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/shopkeeper\/category\/product-sold-summary",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/shopkeeper\/category\/product-sold-summary"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "bearer your-token"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"category_id\":1}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n       \"status\": 200,\n       \"success\": true,\n       \"message\": \"sold-information fetching success\",\n       \"data\": {\n           \"category_name\": \"Socks\",\n           \"category_fontawesome_icon\": \"socks\",\n           \"shop_name\": \"Perfect Footwear Collection\",\n           \"total_due\": \"410.00\",\n           \"total_sold\": \"5  Pair\",\n           \"commission\": \"0.00\"\n       }\n   }",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Product Sell",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/shopkeeper\/product\/product-sell",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/shopkeeper\/product\/product-sell"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "bearer your-token"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"product_code\":\"SC20412211\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\t\"status\": 200,\n\t\"success\": true,\n\t\"message\": \"socks sold successfully\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Single Category Product Un-Sold Summary",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/shopkeeper\/category\/rack-unsold-product-summary",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/shopkeeper\/category\/rack-unsold-product-summary"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "bearer your-token"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"category_id\":1}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\t\"status\": 200,\n\t\"success\": true,\n\t\"message\": \"sold-information fetching success\",\n\t\"data\": {\n\t\t\"socks\": [\n\t\t\t{\n\t\t\t\t\"type_id\": 6,\n\t\t\t\t\"types_name\": \"Loafer\",\n\t\t\t\t\"total\": 21\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"type_id\": 1,\n\t\t\t\t\"types_name\": \"Long\",\n\t\t\t\t\"total\": 24\n\t\t\t}\n\t\t]\n\t}\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Product Un-Sold",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/shopkeeper\/wrong-sold\/product-unsold",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/shopkeeper\/wrong-sold\/product-unsold"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "bearer your-token"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"product_code\":\"SC20412211\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\t\"status\": 200,\n\t\"success\": true,\n\t\"message\": \"SC20412211 product unsold mark successfully\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Single Category Type-wise Un-Sold Product List",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/shopkeeper\/category\/typewise-rack-unsold-product",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/shopkeeper\/category\/typewise-rack-unsold-product"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "bearer your-token"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"category_id\":1,\"type_id\":1}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\t\"status\": 200,\n\t\"success\": true,\n\t\"message\": \"product fetching success\",\n\t\"data\": {\n\t\t\"socks\": [\n\t\t\t{\n\t\t\t\t\"printed_socks_code\": \"LN22202221\",\n\t\t\t\t\"shop_socks_no\": 1,\n\t\t\t\t\"selling_price\": 120,\n\t\t\t\t\"shop_socks_code\": \"LN-41\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"printed_socks_code\": \"LN22202222\",\n\t\t\t\t\"shop_socks_no\": 2,\n\t\t\t\t\"selling_price\": 120,\n\t\t\t\t\"shop_socks_code\": \"LN-42\"\n\t\t\t}\n\t\t]\n\t}\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Check Qr Code",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/product\/check-valid-product-qr",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/product\/check-valid-product-qr"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "bearer your-token"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"qr_code\":\"SH217032231\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\t\"status\": 200,\n\t\"success\": true,\n\t\"message\": \"Valid product QR code\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Type-wise Product Search",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/shopkeeper\/category\/typewise-search-rack-unsold-product",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/shopkeeper\/category\/typewise-search-rack-unsold-product"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "bearer your-token"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"category_id\":\"ratione\",\"type_id\":\"et\",\"socks_search_text\":\"magnam\",\"LO20403221\":\"1\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n     \"status\": 200,\n     \"success\": true,\n     \"message\": \"socks fetching success\",\n     \"data\": {\n         \"socks\": [\n             {\n                 \"printed_socks_code\": \"LN222022211\",\n                 \"shop_socks_no\": 11,\n                 \"selling_price\": 120\n             }\n         ]\n     }\n }",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Shop Un-sold Product List",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/shopkeeper\/rack-current-unsold-products",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/shopkeeper\/rack-current-unsold-products"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "bearer your-token"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{{\n\t\"status\": 200,\n\t\"success\": true,\n\t\"message\": \"socks fetching success\",\n\t\"data\": {\n\t\t\"socks\": [\n\t\t\t{\n\t\t\t\t\"printed_socks_code\": \"LL20412212\",\n\t\t\t\t\"shop_socks_no\": 0,\n\t\t\t\t\"selling_price\": 75\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"printed_socks_code\": \"LL20412213\",\n\t\t\t\t\"shop_socks_no\": 0,\n\t\t\t\t\"selling_price\": 75\n\t\t\t}\n\t\t]\n\t}\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Unsold Product Search",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/shopkeeper\/unsold\/search-product",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/shopkeeper\/unsold\/search-product"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "bearer your-token"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"socks_search_text\":\"1\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\t\"status\": 200,\n\t\"success\": true,\n\t\"message\": \"socks fetching success\",\n\t\"data\": {\n\t\t\"socks\": [\n\t\t\t{\n\t\t\t\t\"printed_socks_code\": \"LL204122110\",\n\t\t\t\t\"shop_socks_no\": 0,\n\t\t\t\t\"selling_price\": 75\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"printed_socks_code\": \"LL204122111\",\n\t\t\t\t\"shop_socks_no\": 0,\n\t\t\t\t\"selling_price\": 75\n\t\t\t}\n\t\t]\n\t}\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Sold Product List",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/shopkeeper\/all-sold-product-list",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/shopkeeper\/all-sold-product-list"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "bearer your-token"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\t\"status\": 200,\n\t\"success\": true,\n\t\"message\": \"Socks fetching successfully\",\n\t\"data\": {\n\t\t\"products\": [\n\t\t\t{\n\t\t\t\t\"printed_socks_code\": \"LO20403222\",\n\t\t\t\t\"shop_socks_no\": 2,\n\t\t\t\t\"shop_socks_code\": \"LO-62\",\n\t\t\t\t\"selling_price\": 80\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"printed_socks_code\": \"SH217032236\",\n\t\t\t\t\"shop_socks_no\": 36,\n\t\t\t\t\"shop_socks_code\": \"SH-736\",\n\t\t\t\t\"selling_price\": 100\n\t\t\t}\n\t\t]\n\t}\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Search Sold Product List",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/shopkeeper\/sold-product\/search-product",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/shopkeeper\/sold-product\/search-product"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "bearer your-token"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"product_code\":\"'122'\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\t\"status\": 200,\n\t\"success\": true,\n\t\"message\": \"Socks seraching successfully\",\n\t\"data\": {\n\t\t\"products\": [\n\t\t\t{\n\t\t\t\t\"product_code\": \"LL20412211\",\n\t\t\t\t\"printed_socks_code\": \"LL20412211\",\n\t\t\t\t\"shop_socks_no\": 0,\n\t\t\t\t\"shop_socks_code\": \"\",\n\t\t\t\t\"selling_price\": 75\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"product_code\": \"LL204122122\",\n\t\t\t\t\"printed_socks_code\": \"LL204122122\",\n\t\t\t\t\"shop_socks_no\": 0,\n\t\t\t\t\"shop_socks_code\": \"\",\n\t\t\t\t\"selling_price\": 75\n\t\t\t}\n\t\t]\n\t}\n}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "VLL-API",
+            "description": "",
+            "item": [
+                {
+                    "name": "Shop Locations",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/shop-locations",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/shop-locations"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\t\"status\": 200,\n\t\"success\": true,\n\t\"message\": \"shop feching success\",\n\t\"shops\": [\n\t\t{\n\t\t\t\"id\": 1,\n\t\t\t\"shop_name\": \"Xplore\",\n\t\t\t\"remaining_socks\": \"11 pair\",\n\t\t\t\"color\": \"#fd3995\",\n\t\t\t\"coordinates\": {\n\t\t\t\t\"latitude\": 23.735778278942618,\n\t\t\t\t\"longitude\": 90.41519258564742\n\t\t\t}\n\t\t},\n\t\t{\n\t\t\t\"id\": 2,\n\t\t\t\"shop_name\": \"Silver Jeans\",\n\t\t\t\"remaining_socks\": \"15 pair\",\n\t\t\t\"color\": \"#25aae2\",\n\t\t\t\"coordinates\": {\n\t\t\t\t\"latitude\": 23.73372299868151,\n\t\t\t\t\"longitude\": 90.41854974235783\n\t\t\t}\n\t\t}\n\t]\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "App Instruction",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/onboarding",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/onboarding"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n   \"status\": 200,\n   \"success\": true,\n   \"message\": \"Onboarding content fetching success\",\n   \"data\": [\n       {\n           \"id\": 1,\n           \"image\": \"https:\/\/png.pngtree.com\/png-clipart\/20190705\/original\/pngtree-cartoon-characters-in-swimsuits-on-mobile-screen-png-image_4280509.jpg\",\n           \"title\": \"Best Digital Solution\",\n           \"subtitle\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit\"\n       },\n       {\n           \"id\": 2,\n           \"image\": \"https:\/\/png.pngtree.com\/png-clipart\/20190705\/original\/pngtree-cartoon-characters-in-swimsuits-on-mobile-screen-png-image_4280509.jpg\",\n           \"title\": \"Best Digital Solution\",\n           \"subtitle\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit\"\n       },\n       {\n           \"id\": 3,\n           \"image\": \"https:\/\/png.pngtree.com\/png-clipart\/20190705\/original\/pngtree-cartoon-characters-in-swimsuits-on-mobile-screen-png-image_4280509.jpg\",\n           \"title\": \"Best Digital Solution\",\n           \"subtitle\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit\"\n       }\n   ]\n}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Voucher",
+            "description": "",
+            "item": [
+                {
+                    "name": "Product Re-Fill Voucher",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/shopkeeper\/product\/refill-voucher",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/shopkeeper\/product\/refill-voucher"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "bearer your-token"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\t\"status\": 200,\n\t\"success\": true,\n\t\"message\": \"Your product voucher list fetching successfully\",\n\t\"data\": {\n\t\t\"vouchers\": [\n\t\t\t{\n\t\t\t\t\"voucher_name\": \"2022-03-17-VLS2-Refill\",\n\t\t\t\t\"voucher_date\": \"17th March, 2022\",\n\t\t\t\t\"location\": \"http:\/\/venturelifestylelimited.com\/public\/voucher\/2022-03-17-VLS2-Refill.pdf\"\n\t\t\t}\n\t\t]\n\t}\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Product Bill Voucher",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/shopkeeper\/product\/bill-voucher",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/shopkeeper\/product\/bill-voucher"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "bearer your-token"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\t\"status\": 200,\n\t\"success\": true,\n\t\"message\": \"Your bill voucher list fetching successfully\",\n\t\"data\": {\n\t\t\"vouchers\": [\n\t\t\t{\n\t\t\t\t\"voucher_name\": \"March 2022\",\n\t\t\t\t\"voucher_date\": \"2nd April, 2022\",\n\t\t\t\t\"location\": \"http:\/\/venturelifestylelimited.com\/public\/Bill\/voucher\/90000180125-bill.pdf\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"voucher_name\": \"February 2022\",\n\t\t\t\t\"voucher_date\": \"3rd March, 2022\",\n\t\t\t\t\"location\": \"http:\/\/venturelifestylelimited.com\/public\/Bill\/voucher\/90000148927-bill.pdf\"\n\t\t\t}\n\t\t]\n\t}\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Shop Activity Log",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/shopkeeper\/activity",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/shopkeeper\/activity"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "bearer your-token"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\t\"status\": 200,\n\t\"success\": true,\n\t\"message\": \"Shop activity fetching success\",\n\t\"data\": {\n\t\t\"shop_activity\": [\n\t\t\t{\n\t\t\t\t\"message\": \"SOCKS_BILL_COLLECTION_BY_AGENT\",\n\t\t\t\t\"operation_date\": \"2022-04-02\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"message\": \"SOCKS_SOLD_BY_SHOPKEEPER\",\n\t\t\t\t\"operation_date\": \"2022-03-31\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"message\": \"SOCKS_SOLD_BY_SHOPKEEPER\",\n\t\t\t\t\"operation_date\": \"2022-03-23\"\n\t\t\t},\n\t\t]\n\t}\n}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "noauth"
+    }
+}

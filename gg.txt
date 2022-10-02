@@ -1,0 +1,13 @@
+UPDATE rack_products rp
+                        left join stocks st on st.style_code = rp.style_code
+                        set
+                        rp.shop_commission = (rp.selling_price / 100)* 15, 
+                        rp.venture_amount = (rp.selling_price / 100)* 85,
+                        rp.agent_commission = 0            
+                        where
+                        rp.rack_code = 'VLS-3-202' 
+                        and rp.shop_id = '136' 
+                        and rp.status in   (1,3,7)
+                        and month(rp.sold_date)='05' 
+                        and year(rp.sold_date)='2022'
+                        and st.cat_id= '3' 

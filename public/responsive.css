@@ -1,0 +1,51 @@
+@media screen and (max-width: 491px) and (min-width: 350px) {
+
+   .responsive_h2{
+    font-size: 14px !important;
+   }
+
+   h3{
+    font-size: 12px !important;
+   }
+
+   .responsive_p_center{
+    text-align: center !important;
+    font-size: 12px;
+   }
+
+   table,td{
+    font-size: 12px;
+   }
+
+   p{
+    font-size: 12px !important;
+   }
+
+ }
+
+
+
+ @media screen and (max-width: 768px)  and (min-width: 480px) {
+
+   .responsive{
+    font-size: 1.2rem !important; 
+   }
+
+   h3{
+    font-size: 1rem !important;
+   }
+
+   .responsive_p_center{
+    text-align: center !important;
+    font-size: 12px;
+   }
+
+   table,td{
+    font-size: 12px;
+   }
+
+   p{
+    font-size: 12px !important;
+   }
+
+ }

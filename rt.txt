@@ -1,0 +1,37 @@
+UPDATE rack_products set
+<<<<<<< HEAD
+<<<<<<< HEAD
+                    shop_commission = (selling_price / 100)* 20, 
+                    venture_amount = (selling_price / 100)* 75,
+                    agent_commission = (selling_price / 100)* 5            
+                where
+                   rack_code = 'VLS2' 
+                   and shop_id = '23' 
+                   and status in   (1,3,7)
+<<<<<<< HEAD
+                   and month(sold_date)='01' 
+>>>>>>> da74011b25444511badb38800f38093b070839e7
+=======
+                    shop_commission = (selling_price / 100)* 20.00, 
+                    venture_amount = (selling_price / 100)* 75,
+                    agent_commission = (selling_price / 100)* 5.00            
+                where
+                   rack_code = 'VLS2' 
+                   and shop_id = '23' 
+                   and status in   (1, 3)
+                   and month(sold_date)='03' 
+>>>>>>> 48f93cc56734d3596fe15415ccd7cb35ef8d8d77
+=======
+                   and month(sold_date)='04' 
+>>>>>>> 5c449bdc569e69893c1e55fcee8cec3908980dfa
+=======
+                    shop_commission = (selling_price / 100)* 20.00, 
+                    venture_amount = (selling_price / 100)* 75,
+                    agent_commission = (selling_price / 100)* 5.00            
+                where
+                   rack_code = 'VLS2' 
+                   and shop_id = '23' 
+                   and status in   (1, 3)
+                   and month(sold_date)='03' 
+>>>>>>> f5637a8a2e693190d55ebcb37c9bb60af5a77d00
+                   and year(sold_date)='2022'

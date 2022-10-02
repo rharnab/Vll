@@ -1,0 +1,2971 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>VLL Mobile Application API</title>
+
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../docs/css/theme-default.style.css" media="screen">
+    <link rel="stylesheet" href="../docs/css/theme-default.print.css" media="print">
+
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
+
+    <link rel="stylesheet"
+          href="https://unpkg.com/@highlightjs/cdn-assets@10.7.2/styles/obsidian.min.css">
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@10.7.2/highlight.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jets/0.14.1/jets.min.js"></script>
+
+    <style id="language-style">
+        /* starts out as display none and is replaced with js later  */
+                    body .content .javascript-example code { display: none; }
+                    body .content .bash-example code { display: none; }
+            </style>
+
+    <script>
+        var baseUrl = "http://Stock-Management.test";
+        var useCsrf = Boolean();
+        var csrfUrl = "/sanctum/csrf-cookie";
+    </script>
+    <script src="../docs/js/tryitout-3.26.0.js"></script>
+
+    <script src="../docs/js/theme-default-3.26.0.js"></script>
+
+</head>
+
+<body data-languages="[&quot;javascript&quot;,&quot;bash&quot;]">
+
+<a href="#" id="nav-button">
+    <span>
+        MENU
+        <img src="../docs/images/navbar.png" alt="navbar-image" />
+    </span>
+</a>
+<div class="tocify-wrapper">
+            <img src="http://venturelifestylelimited.com/public/backend/assets/img/vll.png" alt="logo" class="logo" style="padding-top: 10px;" width="230px"/>
+    
+            <div class="lang-selector">
+                                            <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
+                                            <button type="button" class="lang-button" data-language-name="bash">bash</button>
+                    </div>
+    
+    <div class="search">
+        <input type="text" class="search" id="input-search" placeholder="Search">
+    </div>
+
+    <div id="toc">
+                                                                            <ul id="tocify-header-0" class="tocify-header">
+                    <li class="tocify-item level-1" data-unique="introduction">
+                        <a href="#introduction">Introduction</a>
+                    </li>
+                                            
+                                                                    </ul>
+                                                <ul id="tocify-header-1" class="tocify-header">
+                    <li class="tocify-item level-1" data-unique="authenticating-requests">
+                        <a href="#authenticating-requests">Authenticating requests</a>
+                    </li>
+                                            
+                                                </ul>
+                    
+                    <ul id="tocify-header-2" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="authentication">
+                    <a href="#authentication">Authentication</a>
+                </li>
+                                    <ul id="tocify-subheader-authentication" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="authentication-POSTapi-v1-tokens">
+                        <a href="#authentication-POSTapi-v1-tokens">Generate Token</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="authentication-POSTapi-v1-logout">
+                        <a href="#authentication-POSTapi-v1-logout">Logout</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-3" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="product-category">
+                    <a href="#product-category">Product Category</a>
+                </li>
+                                    <ul id="tocify-subheader-product-category" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="product-category-GETapi-v1-category-index">
+                        <a href="#product-category-GETapi-v1-category-index">Category List</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-4" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="shopkeeper">
+                    <a href="#shopkeeper">Shopkeeper</a>
+                </li>
+                                    <ul id="tocify-subheader-shopkeeper" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="shopkeeper-GETapi-v1-shopkeeper-profile">
+                        <a href="#shopkeeper-GETapi-v1-shopkeeper-profile">Shopkeeper Profile</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="shopkeeper-GETapi-v1-shopkeeper-product-product-details--product_id-">
+                        <a href="#shopkeeper-GETapi-v1-shopkeeper-product-product-details--product_id-">Single Product Details</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="shopkeeper-POSTapi-v1-shopkeeper-category-product-sold-summary">
+                        <a href="#shopkeeper-POSTapi-v1-shopkeeper-category-product-sold-summary">Single Category Product Sold Summary</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="shopkeeper-POSTapi-v1-shopkeeper-product-product-sell">
+                        <a href="#shopkeeper-POSTapi-v1-shopkeeper-product-product-sell">Product Sell</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="shopkeeper-POSTapi-v1-shopkeeper-category-rack-unsold-product-summary">
+                        <a href="#shopkeeper-POSTapi-v1-shopkeeper-category-rack-unsold-product-summary">Single Category Product Un-Sold Summary</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="shopkeeper-POSTapi-v1-shopkeeper-wrong-sold-product-unsold">
+                        <a href="#shopkeeper-POSTapi-v1-shopkeeper-wrong-sold-product-unsold">Product Un-Sold</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="shopkeeper-POSTapi-v1-shopkeeper-category-typewise-rack-unsold-product">
+                        <a href="#shopkeeper-POSTapi-v1-shopkeeper-category-typewise-rack-unsold-product">Single Category Type-wise Un-Sold Product List</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="shopkeeper-POSTapi-v1-product-check-valid-product-qr">
+                        <a href="#shopkeeper-POSTapi-v1-product-check-valid-product-qr">Check Qr Code</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="shopkeeper-POSTapi-v1-shopkeeper-category-typewise-search-rack-unsold-product">
+                        <a href="#shopkeeper-POSTapi-v1-shopkeeper-category-typewise-search-rack-unsold-product">Type-wise Product Search</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="shopkeeper-POSTapi-v1-shopkeeper-rack-current-unsold-products">
+                        <a href="#shopkeeper-POSTapi-v1-shopkeeper-rack-current-unsold-products">Shop Un-sold Product List</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="shopkeeper-POSTapi-v1-shopkeeper-unsold-search-product">
+                        <a href="#shopkeeper-POSTapi-v1-shopkeeper-unsold-search-product">Unsold Product Search</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="shopkeeper-GETapi-v1-shopkeeper-all-sold-product-list">
+                        <a href="#shopkeeper-GETapi-v1-shopkeeper-all-sold-product-list">Sold Product List</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="shopkeeper-POSTapi-v1-shopkeeper-sold-product-search-product">
+                        <a href="#shopkeeper-POSTapi-v1-shopkeeper-sold-product-search-product">Search Sold Product List</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-5" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="vll-api">
+                    <a href="#vll-api">VLL-API</a>
+                </li>
+                                    <ul id="tocify-subheader-vll-api" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="vll-api-GETapi-v1-shop-locations">
+                        <a href="#vll-api-GETapi-v1-shop-locations">Shop Locations</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="vll-api-GETapi-v1-onboarding">
+                        <a href="#vll-api-GETapi-v1-onboarding">App Instruction</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-6" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="voucher">
+                    <a href="#voucher">Voucher</a>
+                </li>
+                                    <ul id="tocify-subheader-voucher" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="voucher-GETapi-v1-shopkeeper-product-refill-voucher">
+                        <a href="#voucher-GETapi-v1-shopkeeper-product-refill-voucher">Product Re-Fill Voucher</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="voucher-GETapi-v1-shopkeeper-product-bill-voucher">
+                        <a href="#voucher-GETapi-v1-shopkeeper-product-bill-voucher">Product Bill Voucher</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="voucher-GETapi-v1-shopkeeper-activity">
+                        <a href="#voucher-GETapi-v1-shopkeeper-activity">Shop Activity Log</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+        
+                        
+            </div>
+
+            <ul class="toc-footer" id="toc-footer">
+                            <li><a href="../docs/collection.json">View Postman collection</a></li>
+                            <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
+                    </ul>
+        <ul class="toc-footer" id="last-updated">
+        <li>Last updated: April 9 2022</li>
+    </ul>
+</div>
+
+<div class="page-wrapper">
+    <div class="dark-box"></div>
+    <div class="content">
+        <h1 id="introduction">Introduction</h1>
+<p>This api documentation for shurovi mobile application development</p>
+<p>This API documentation for venture lifestyle limited mobile application</p>
+<aside>NB: If you found success true in API response. That's mean your request has been successfully. If you found success false, that's mean your request has been failed.</aside>
+<blockquote>
+<p>Base URL</p>
+</blockquote>
+<pre><code class="language-yaml">http://localhost/pegasus-socks/</code></pre>
+
+        <h1 id="authenticating-requests">Authenticating requests</h1>
+<p>This API is not authenticated.</p>
+
+        <h1 id="authentication">Authentication</h1>
+
+    <p>Check customer valid/invalid using mobile number and password. If everything is okay, you'll get a success TRUE response.</p>
+<p>Otherwise, the request will fail with an error, and a response listing the failed services wish success FALSE response</p>
+
+            <h2 id="authentication-POSTapi-v1-tokens">Generate Token</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-tokens">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/pegasus-socks/api/v1/tokens"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "mobile_number": "01711111111",
+    "password": "123456"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/pegasus-socks/api/v1/tokens" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"mobile_number\": \"01711111111\",
+    \"password\": \"123456\"
+}"
+</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-tokens">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: 200,
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Login successfully&quot;,
+    &quot;data&quot;: {
+        &quot;token&quot;: &quot;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9sb2dpbiIsImlhdCI6MTY0MDg1NTUxNywiZXhwIjoxNjQwODU5MTE3LCJuYmYiOjE2NDA4NTU1MTcsImp0aSI6InhqMzQ5eXMwSHF0OGZ0QWUiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.SSuVeFSEo4hh9p6arwrw7tJKc43F7n7vVMzyXmZudOA&quot;,
+        &quot;token_type&quot;: &quot;bearer&quot;,
+        &quot;expires_in&quot;: 3600
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: 400,
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Your mobile &amp; password was incorrect&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-tokens" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-tokens"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-tokens"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-tokens" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-tokens"></code></pre>
+</span>
+<form id="form-POSTapi-v1-tokens" data-method="POST"
+      data-path="api/v1/tokens"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-tokens', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-tokens"
+                    onclick="tryItOut('POSTapi-v1-tokens');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-tokens"
+                    onclick="cancelTryOut('POSTapi-v1-tokens');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-tokens" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/tokens</code></b>
+        </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>mobile_number</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="mobile_number"
+               data-endpoint="POSTapi-v1-tokens"
+               value="01711111111"
+               data-component="body" hidden>
+    <br>
+<p>The mobile number for generate.</p>
+        </p>
+                <p>
+            <b><code>password</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="password"
+               data-endpoint="POSTapi-v1-tokens"
+               value="123456"
+               data-component="body" hidden>
+    <br>
+<p>The password for token-generate.</p>
+        </p>
+        </form>
+
+    <h3>Response</h3>
+    <h4 class="fancy-heading-panel"><b>Response Fields</b></h4>
+            <p>
+            <b><code>success</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
+<br>
+<p>The success of this API response is (<code>true</code> or <code>false</code>).</p>
+        </p>
+                <h2 id="authentication-POSTapi-v1-logout">Logout</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-logout">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/pegasus-socks/api/v1/logout"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "bearer your-token",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/pegasus-socks/api/v1/logout" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "Authorization: bearer your-token"</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-logout">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: 200,
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;logout successfully&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-logout" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-logout"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-logout"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-logout" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-logout"></code></pre>
+</span>
+<form id="form-POSTapi-v1-logout" data-method="POST"
+      data-path="api/v1/logout"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json","Authorization":"bearer your-token"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-logout', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-logout"
+                    onclick="tryItOut('POSTapi-v1-logout');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-logout"
+                    onclick="cancelTryOut('POSTapi-v1-logout');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-logout" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/logout</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTapi-v1-logout" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-v1-logout"
+                                                                data-component="header"></label>
+        </p>
+                </form>
+
+        <h1 id="product-category">Product Category</h1>
+
+    
+
+            <h2 id="product-category-GETapi-v1-category-index">Category List</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-category-index">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/pegasus-socks/api/v1/category/index"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "bearer your-token",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/pegasus-socks/api/v1/category/index" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "Authorization: bearer your-token"</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-category-index">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: 200,
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Category fetching successfully&quot;,
+    &quot;data&quot;: {
+        &quot;categories&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;name&quot;: &quot;Socks&quot;,
+                &quot;icon_image_url&quot;: null
+            },
+            {
+                &quot;id&quot;: 1000,
+                &quot;name&quot;: &quot;Wrong Sell&quot;,
+                &quot;icon_image_url&quot;: &quot;https://www.onlygfx.com/wp-content/uploads/2018/04/wrong-stamp-1.png&quot;
+            }
+        ]
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-category-index" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-category-index"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-category-index"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-category-index" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-category-index"></code></pre>
+</span>
+<form id="form-GETapi-v1-category-index" data-method="GET"
+      data-path="api/v1/category/index"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json","Authorization":"bearer your-token"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-category-index', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-category-index"
+                    onclick="tryItOut('GETapi-v1-category-index');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-category-index"
+                    onclick="cancelTryOut('GETapi-v1-category-index');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-category-index" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/category/index</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-v1-category-index" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-v1-category-index"
+                                                                data-component="header"></label>
+        </p>
+                </form>
+
+        <h1 id="shopkeeper">Shopkeeper</h1>
+
+    
+
+            <h2 id="shopkeeper-GETapi-v1-shopkeeper-profile">Shopkeeper Profile</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-shopkeeper-profile">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/pegasus-socks/api/v1/shopkeeper/profile"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "bearer your-token",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/pegasus-socks/api/v1/shopkeeper/profile" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "Authorization: bearer your-token"</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-shopkeeper-profile">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: 200,
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Shopkeeper info fetching successfully&quot;,
+    &quot;data&quot;: {
+        &quot;shop_name&quot;: &quot;Perfect Footwear Collection&quot;,
+        &quot;shop_image_url&quot;: &quot;http://venturelifestylelimited.com/uploads/shop_images/67.jpeg&quot;,
+        &quot;total_amount&quot;: &quot;410.00&quot;,
+        &quot;total_shop_commission&quot;: &quot;80.00&quot;,
+        &quot;total_sold&quot;: &quot;5.00&quot;
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-shopkeeper-profile" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-shopkeeper-profile"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-shopkeeper-profile"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-shopkeeper-profile" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-shopkeeper-profile"></code></pre>
+</span>
+<form id="form-GETapi-v1-shopkeeper-profile" data-method="GET"
+      data-path="api/v1/shopkeeper/profile"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json","Authorization":"bearer your-token"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-shopkeeper-profile', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-shopkeeper-profile"
+                    onclick="tryItOut('GETapi-v1-shopkeeper-profile');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-shopkeeper-profile"
+                    onclick="cancelTryOut('GETapi-v1-shopkeeper-profile');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-shopkeeper-profile" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/shopkeeper/profile</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-v1-shopkeeper-profile" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-v1-shopkeeper-profile"
+                                                                data-component="header"></label>
+        </p>
+                </form>
+
+            <h2 id="shopkeeper-GETapi-v1-shopkeeper-product-product-details--product_id-">Single Product Details</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-shopkeeper-product-product-details--product_id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/pegasus-socks/api/v1/shopkeeper/product/product-details/temporibus"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "bearer your-token",
+};
+
+let body = {
+    "category_id": 1,
+    "type_id": 1,
+    "socks_search_text": "122"
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/pegasus-socks/api/v1/shopkeeper/product/product-details/temporibus" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "Authorization: bearer your-token" \
+    --data "{
+    \"category_id\": 1,
+    \"type_id\": 1,
+    \"socks_search_text\": \"122\"
+}"
+</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-shopkeeper-product-product-details--product_id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: 200,
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Data fetching successfully&quot;,
+    &quot;data&quot;: {
+        &quot;product&quot;: {
+            &quot;category_name&quot;: &quot;Socks&quot;,
+            &quot;brand_name&quot;: &quot;Pegasus Loafer&quot;,
+            &quot;size_name&quot;: &quot;10/11/LF\r\n&quot;,
+            &quot;types_name&quot;: &quot;Loafer&quot;,
+            &quot;selling_price&quot;: &quot;80.00&quot;,
+            &quot;socks_code&quot;: &quot;LO20403221(LO-61)&quot;,
+            &quot;product_image&quot;: &quot;https://cdn.shoplightspeed.com/shops/609731/files/20893344/1500x4000x3/pegasus-retro-stripe-mens-crew-sock-from-sock-it-t.jpg&quot;
+        }
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-shopkeeper-product-product-details--product_id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-shopkeeper-product-product-details--product_id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-shopkeeper-product-product-details--product_id-"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-shopkeeper-product-product-details--product_id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-shopkeeper-product-product-details--product_id-"></code></pre>
+</span>
+<form id="form-GETapi-v1-shopkeeper-product-product-details--product_id-" data-method="GET"
+      data-path="api/v1/shopkeeper/product/product-details/{product_id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json","Authorization":"bearer your-token"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-shopkeeper-product-product-details--product_id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-shopkeeper-product-product-details--product_id-"
+                    onclick="tryItOut('GETapi-v1-shopkeeper-product-product-details--product_id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-shopkeeper-product-product-details--product_id-"
+                    onclick="cancelTryOut('GETapi-v1-shopkeeper-product-product-details--product_id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-shopkeeper-product-product-details--product_id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/shopkeeper/product/product-details/{product_id}</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-v1-shopkeeper-product-product-details--product_id-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-v1-shopkeeper-product-product-details--product_id-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>product_id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="product_id"
+               data-endpoint="GETapi-v1-shopkeeper-product-product-details--product_id-"
+               value="temporibus"
+               data-component="url" hidden>
+    <br>
+<p>The ID of the product.</p>
+            </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>category_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="category_id"
+               data-endpoint="GETapi-v1-shopkeeper-product-product-details--product_id-"
+               value="1"
+               data-component="body" hidden>
+    <br>
+<p>.</p>
+        </p>
+                <p>
+            <b><code>type_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="type_id"
+               data-endpoint="GETapi-v1-shopkeeper-product-product-details--product_id-"
+               value="1"
+               data-component="body" hidden>
+    <br>
+<p>.</p>
+        </p>
+                <p>
+            <b><code>socks_search_text</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="socks_search_text"
+               data-endpoint="GETapi-v1-shopkeeper-product-product-details--product_id-"
+               value="122"
+               data-component="body" hidden>
+    <br>
+<p>.</p>
+        </p>
+        </form>
+
+    <h3>Response</h3>
+    <h4 class="fancy-heading-panel"><b>Response Fields</b></h4>
+            <p>
+            <b><code>success</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
+<br>
+<p>The success of this API response is (<code>true</code> or <code>false</code>).</p>
+        </p>
+                <h2 id="shopkeeper-POSTapi-v1-shopkeeper-category-product-sold-summary">Single Category Product Sold Summary</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-shopkeeper-category-product-sold-summary">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/pegasus-socks/api/v1/shopkeeper/category/product-sold-summary"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "bearer your-token",
+};
+
+let body = {
+    "category_id": 1
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/pegasus-socks/api/v1/shopkeeper/category/product-sold-summary" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "Authorization: bearer your-token" \
+    --data "{
+    \"category_id\": 1
+}"
+</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-shopkeeper-category-product-sold-summary">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: 200,
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;sold-information fetching success&quot;,
+    &quot;data&quot;: {
+        &quot;category_name&quot;: &quot;Socks&quot;,
+        &quot;category_fontawesome_icon&quot;: &quot;socks&quot;,
+        &quot;shop_name&quot;: &quot;Perfect Footwear Collection&quot;,
+        &quot;total_due&quot;: &quot;410.00&quot;,
+        &quot;total_sold&quot;: &quot;5  Pair&quot;,
+        &quot;commission&quot;: &quot;0.00&quot;
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-shopkeeper-category-product-sold-summary" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-shopkeeper-category-product-sold-summary"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-shopkeeper-category-product-sold-summary"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-shopkeeper-category-product-sold-summary" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-shopkeeper-category-product-sold-summary"></code></pre>
+</span>
+<form id="form-POSTapi-v1-shopkeeper-category-product-sold-summary" data-method="POST"
+      data-path="api/v1/shopkeeper/category/product-sold-summary"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json","Authorization":"bearer your-token"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-shopkeeper-category-product-sold-summary', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-shopkeeper-category-product-sold-summary"
+                    onclick="tryItOut('POSTapi-v1-shopkeeper-category-product-sold-summary');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-shopkeeper-category-product-sold-summary"
+                    onclick="cancelTryOut('POSTapi-v1-shopkeeper-category-product-sold-summary');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-shopkeeper-category-product-sold-summary" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/shopkeeper/category/product-sold-summary</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTapi-v1-shopkeeper-category-product-sold-summary" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-v1-shopkeeper-category-product-sold-summary"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>category_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="category_id"
+               data-endpoint="POSTapi-v1-shopkeeper-category-product-sold-summary"
+               value="1"
+               data-component="body" hidden>
+    <br>
+<p>.</p>
+        </p>
+        </form>
+
+    <h3>Response</h3>
+    <h4 class="fancy-heading-panel"><b>Response Fields</b></h4>
+            <p>
+            <b><code>success</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
+<br>
+<p>The success of this API response is (<code>true</code> or <code>false</code>).</p>
+        </p>
+                <h2 id="shopkeeper-POSTapi-v1-shopkeeper-product-product-sell">Product Sell</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-shopkeeper-product-product-sell">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/pegasus-socks/api/v1/shopkeeper/product/product-sell"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "bearer your-token",
+};
+
+let body = {
+    "product_code": "SC20412211"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/pegasus-socks/api/v1/shopkeeper/product/product-sell" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "Authorization: bearer your-token" \
+    --data "{
+    \"product_code\": \"SC20412211\"
+}"
+</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-shopkeeper-product-product-sell">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: 200,
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;socks sold successfully&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-shopkeeper-product-product-sell" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-shopkeeper-product-product-sell"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-shopkeeper-product-product-sell"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-shopkeeper-product-product-sell" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-shopkeeper-product-product-sell"></code></pre>
+</span>
+<form id="form-POSTapi-v1-shopkeeper-product-product-sell" data-method="POST"
+      data-path="api/v1/shopkeeper/product/product-sell"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json","Authorization":"bearer your-token"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-shopkeeper-product-product-sell', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-shopkeeper-product-product-sell"
+                    onclick="tryItOut('POSTapi-v1-shopkeeper-product-product-sell');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-shopkeeper-product-product-sell"
+                    onclick="cancelTryOut('POSTapi-v1-shopkeeper-product-product-sell');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-shopkeeper-product-product-sell" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/shopkeeper/product/product-sell</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTapi-v1-shopkeeper-product-product-sell" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-v1-shopkeeper-product-product-sell"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>product_code</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="product_code"
+               data-endpoint="POSTapi-v1-shopkeeper-product-product-sell"
+               value="SC20412211"
+               data-component="body" hidden>
+    <br>
+<p>.</p>
+        </p>
+        </form>
+
+    <h3>Response</h3>
+    <h4 class="fancy-heading-panel"><b>Response Fields</b></h4>
+            <p>
+            <b><code>success</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
+<br>
+<p>The success of this API response is (<code>true</code> or <code>false</code>).</p>
+        </p>
+                <h2 id="shopkeeper-POSTapi-v1-shopkeeper-category-rack-unsold-product-summary">Single Category Product Un-Sold Summary</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-shopkeeper-category-rack-unsold-product-summary">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/pegasus-socks/api/v1/shopkeeper/category/rack-unsold-product-summary"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "bearer your-token",
+};
+
+let body = {
+    "category_id": 1
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/pegasus-socks/api/v1/shopkeeper/category/rack-unsold-product-summary" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "Authorization: bearer your-token" \
+    --data "{
+    \"category_id\": 1
+}"
+</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-shopkeeper-category-rack-unsold-product-summary">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: 200,
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;sold-information fetching success&quot;,
+    &quot;data&quot;: {
+        &quot;socks&quot;: [
+            {
+                &quot;type_id&quot;: 6,
+                &quot;types_name&quot;: &quot;Loafer&quot;,
+                &quot;total&quot;: 21
+            },
+            {
+                &quot;type_id&quot;: 1,
+                &quot;types_name&quot;: &quot;Long&quot;,
+                &quot;total&quot;: 24
+            }
+        ]
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-shopkeeper-category-rack-unsold-product-summary" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-shopkeeper-category-rack-unsold-product-summary"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-shopkeeper-category-rack-unsold-product-summary"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-shopkeeper-category-rack-unsold-product-summary" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-shopkeeper-category-rack-unsold-product-summary"></code></pre>
+</span>
+<form id="form-POSTapi-v1-shopkeeper-category-rack-unsold-product-summary" data-method="POST"
+      data-path="api/v1/shopkeeper/category/rack-unsold-product-summary"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json","Authorization":"bearer your-token"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-shopkeeper-category-rack-unsold-product-summary', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-shopkeeper-category-rack-unsold-product-summary"
+                    onclick="tryItOut('POSTapi-v1-shopkeeper-category-rack-unsold-product-summary');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-shopkeeper-category-rack-unsold-product-summary"
+                    onclick="cancelTryOut('POSTapi-v1-shopkeeper-category-rack-unsold-product-summary');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-shopkeeper-category-rack-unsold-product-summary" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/shopkeeper/category/rack-unsold-product-summary</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTapi-v1-shopkeeper-category-rack-unsold-product-summary" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-v1-shopkeeper-category-rack-unsold-product-summary"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>category_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="category_id"
+               data-endpoint="POSTapi-v1-shopkeeper-category-rack-unsold-product-summary"
+               value="1"
+               data-component="body" hidden>
+    <br>
+<p>.</p>
+        </p>
+        </form>
+
+    <h3>Response</h3>
+    <h4 class="fancy-heading-panel"><b>Response Fields</b></h4>
+            <p>
+            <b><code>success</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
+<br>
+<p>The success of this API response is (<code>true</code> or <code>false</code>).</p>
+        </p>
+                <h2 id="shopkeeper-POSTapi-v1-shopkeeper-wrong-sold-product-unsold">Product Un-Sold</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-shopkeeper-wrong-sold-product-unsold">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/pegasus-socks/api/v1/shopkeeper/wrong-sold/product-unsold"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "bearer your-token",
+};
+
+let body = {
+    "product_code": "SC20412211"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/pegasus-socks/api/v1/shopkeeper/wrong-sold/product-unsold" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "Authorization: bearer your-token" \
+    --data "{
+    \"product_code\": \"SC20412211\"
+}"
+</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-shopkeeper-wrong-sold-product-unsold">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: 200,
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;SC20412211 product unsold mark successfully&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-shopkeeper-wrong-sold-product-unsold" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-shopkeeper-wrong-sold-product-unsold"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-shopkeeper-wrong-sold-product-unsold"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-shopkeeper-wrong-sold-product-unsold" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-shopkeeper-wrong-sold-product-unsold"></code></pre>
+</span>
+<form id="form-POSTapi-v1-shopkeeper-wrong-sold-product-unsold" data-method="POST"
+      data-path="api/v1/shopkeeper/wrong-sold/product-unsold"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json","Authorization":"bearer your-token"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-shopkeeper-wrong-sold-product-unsold', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-shopkeeper-wrong-sold-product-unsold"
+                    onclick="tryItOut('POSTapi-v1-shopkeeper-wrong-sold-product-unsold');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-shopkeeper-wrong-sold-product-unsold"
+                    onclick="cancelTryOut('POSTapi-v1-shopkeeper-wrong-sold-product-unsold');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-shopkeeper-wrong-sold-product-unsold" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/shopkeeper/wrong-sold/product-unsold</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTapi-v1-shopkeeper-wrong-sold-product-unsold" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-v1-shopkeeper-wrong-sold-product-unsold"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>product_code</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="product_code"
+               data-endpoint="POSTapi-v1-shopkeeper-wrong-sold-product-unsold"
+               value="SC20412211"
+               data-component="body" hidden>
+    <br>
+<p>.</p>
+        </p>
+        </form>
+
+    <h3>Response</h3>
+    <h4 class="fancy-heading-panel"><b>Response Fields</b></h4>
+            <p>
+            <b><code>success</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
+<br>
+<p>The success of this API response is (<code>true</code> or <code>false</code>).</p>
+        </p>
+                <h2 id="shopkeeper-POSTapi-v1-shopkeeper-category-typewise-rack-unsold-product">Single Category Type-wise Un-Sold Product List</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-shopkeeper-category-typewise-rack-unsold-product">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/pegasus-socks/api/v1/shopkeeper/category/typewise-rack-unsold-product"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "bearer your-token",
+};
+
+let body = {
+    "category_id": 1,
+    "type_id": 1
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/pegasus-socks/api/v1/shopkeeper/category/typewise-rack-unsold-product" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "Authorization: bearer your-token" \
+    --data "{
+    \"category_id\": 1,
+    \"type_id\": 1
+}"
+</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-shopkeeper-category-typewise-rack-unsold-product">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: 200,
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;product fetching success&quot;,
+    &quot;data&quot;: {
+        &quot;socks&quot;: [
+            {
+                &quot;printed_socks_code&quot;: &quot;LN22202221&quot;,
+                &quot;shop_socks_no&quot;: 1,
+                &quot;selling_price&quot;: 120,
+                &quot;shop_socks_code&quot;: &quot;LN-41&quot;
+            },
+            {
+                &quot;printed_socks_code&quot;: &quot;LN22202222&quot;,
+                &quot;shop_socks_no&quot;: 2,
+                &quot;selling_price&quot;: 120,
+                &quot;shop_socks_code&quot;: &quot;LN-42&quot;
+            }
+        ]
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-shopkeeper-category-typewise-rack-unsold-product" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-shopkeeper-category-typewise-rack-unsold-product"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-shopkeeper-category-typewise-rack-unsold-product"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-shopkeeper-category-typewise-rack-unsold-product" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-shopkeeper-category-typewise-rack-unsold-product"></code></pre>
+</span>
+<form id="form-POSTapi-v1-shopkeeper-category-typewise-rack-unsold-product" data-method="POST"
+      data-path="api/v1/shopkeeper/category/typewise-rack-unsold-product"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json","Authorization":"bearer your-token"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-shopkeeper-category-typewise-rack-unsold-product', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-shopkeeper-category-typewise-rack-unsold-product"
+                    onclick="tryItOut('POSTapi-v1-shopkeeper-category-typewise-rack-unsold-product');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-shopkeeper-category-typewise-rack-unsold-product"
+                    onclick="cancelTryOut('POSTapi-v1-shopkeeper-category-typewise-rack-unsold-product');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-shopkeeper-category-typewise-rack-unsold-product" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/shopkeeper/category/typewise-rack-unsold-product</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTapi-v1-shopkeeper-category-typewise-rack-unsold-product" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-v1-shopkeeper-category-typewise-rack-unsold-product"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>category_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="category_id"
+               data-endpoint="POSTapi-v1-shopkeeper-category-typewise-rack-unsold-product"
+               value="1"
+               data-component="body" hidden>
+    <br>
+<p>.</p>
+        </p>
+                <p>
+            <b><code>type_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="type_id"
+               data-endpoint="POSTapi-v1-shopkeeper-category-typewise-rack-unsold-product"
+               value="1"
+               data-component="body" hidden>
+    <br>
+<p>.</p>
+        </p>
+        </form>
+
+    <h3>Response</h3>
+    <h4 class="fancy-heading-panel"><b>Response Fields</b></h4>
+            <p>
+            <b><code>success</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
+<br>
+<p>The success of this API response is (<code>true</code> or <code>false</code>).</p>
+        </p>
+                <h2 id="shopkeeper-POSTapi-v1-product-check-valid-product-qr">Check Qr Code</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-product-check-valid-product-qr">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/pegasus-socks/api/v1/product/check-valid-product-qr"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "bearer your-token",
+};
+
+let body = {
+    "qr_code": "SH217032231"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/pegasus-socks/api/v1/product/check-valid-product-qr" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "Authorization: bearer your-token" \
+    --data "{
+    \"qr_code\": \"SH217032231\"
+}"
+</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-product-check-valid-product-qr">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: 200,
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Valid product QR code&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-product-check-valid-product-qr" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-product-check-valid-product-qr"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-product-check-valid-product-qr"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-product-check-valid-product-qr" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-product-check-valid-product-qr"></code></pre>
+</span>
+<form id="form-POSTapi-v1-product-check-valid-product-qr" data-method="POST"
+      data-path="api/v1/product/check-valid-product-qr"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json","Authorization":"bearer your-token"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-product-check-valid-product-qr', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-product-check-valid-product-qr"
+                    onclick="tryItOut('POSTapi-v1-product-check-valid-product-qr');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-product-check-valid-product-qr"
+                    onclick="cancelTryOut('POSTapi-v1-product-check-valid-product-qr');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-product-check-valid-product-qr" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/product/check-valid-product-qr</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTapi-v1-product-check-valid-product-qr" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-v1-product-check-valid-product-qr"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>qr_code</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="qr_code"
+               data-endpoint="POSTapi-v1-product-check-valid-product-qr"
+               value="SH217032231"
+               data-component="body" hidden>
+    <br>
+<p>.</p>
+        </p>
+        </form>
+
+    <h3>Response</h3>
+    <h4 class="fancy-heading-panel"><b>Response Fields</b></h4>
+            <p>
+            <b><code>success</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
+<br>
+<p>The success of this API response is (<code>true</code> or <code>false</code>).</p>
+        </p>
+                <h2 id="shopkeeper-POSTapi-v1-shopkeeper-category-typewise-search-rack-unsold-product">Type-wise Product Search</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-shopkeeper-category-typewise-search-rack-unsold-product">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/pegasus-socks/api/v1/shopkeeper/category/typewise-search-rack-unsold-product"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "bearer your-token",
+};
+
+let body = {
+    "category_id": "ratione",
+    "type_id": "et",
+    "socks_search_text": "magnam",
+    "LO20403221": "1"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/pegasus-socks/api/v1/shopkeeper/category/typewise-search-rack-unsold-product" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "Authorization: bearer your-token" \
+    --data "{
+    \"category_id\": \"ratione\",
+    \"type_id\": \"et\",
+    \"socks_search_text\": \"magnam\",
+    \"LO20403221\": \"1\"
+}"
+</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-shopkeeper-category-typewise-search-rack-unsold-product">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: 200,
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;socks fetching success&quot;,
+    &quot;data&quot;: {
+        &quot;socks&quot;: [
+            {
+                &quot;printed_socks_code&quot;: &quot;LN222022211&quot;,
+                &quot;shop_socks_no&quot;: 11,
+                &quot;selling_price&quot;: 120
+            }
+        ]
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-shopkeeper-category-typewise-search-rack-unsold-product" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-shopkeeper-category-typewise-search-rack-unsold-product"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-shopkeeper-category-typewise-search-rack-unsold-product"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-shopkeeper-category-typewise-search-rack-unsold-product" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-shopkeeper-category-typewise-search-rack-unsold-product"></code></pre>
+</span>
+<form id="form-POSTapi-v1-shopkeeper-category-typewise-search-rack-unsold-product" data-method="POST"
+      data-path="api/v1/shopkeeper/category/typewise-search-rack-unsold-product"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json","Authorization":"bearer your-token"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-shopkeeper-category-typewise-search-rack-unsold-product', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-shopkeeper-category-typewise-search-rack-unsold-product"
+                    onclick="tryItOut('POSTapi-v1-shopkeeper-category-typewise-search-rack-unsold-product');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-shopkeeper-category-typewise-search-rack-unsold-product"
+                    onclick="cancelTryOut('POSTapi-v1-shopkeeper-category-typewise-search-rack-unsold-product');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-shopkeeper-category-typewise-search-rack-unsold-product" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/shopkeeper/category/typewise-search-rack-unsold-product</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTapi-v1-shopkeeper-category-typewise-search-rack-unsold-product" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-v1-shopkeeper-category-typewise-search-rack-unsold-product"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>category_id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="category_id"
+               data-endpoint="POSTapi-v1-shopkeeper-category-typewise-search-rack-unsold-product"
+               value="ratione"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>type_id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="type_id"
+               data-endpoint="POSTapi-v1-shopkeeper-category-typewise-search-rack-unsold-product"
+               value="et"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>socks_search_text</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="socks_search_text"
+               data-endpoint="POSTapi-v1-shopkeeper-category-typewise-search-rack-unsold-product"
+               value="magnam"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>LO20403221</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="LO20403221"
+               data-endpoint="POSTapi-v1-shopkeeper-category-typewise-search-rack-unsold-product"
+               value="1"
+               data-component="body" hidden>
+    <br>
+<p>.</p>
+        </p>
+        </form>
+
+    <h3>Response</h3>
+    <h4 class="fancy-heading-panel"><b>Response Fields</b></h4>
+            <p>
+            <b><code>success</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
+<br>
+<p>The success of this API response is (<code>true</code> or <code>false</code>).</p>
+        </p>
+                <h2 id="shopkeeper-POSTapi-v1-shopkeeper-rack-current-unsold-products">Shop Un-sold Product List</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-shopkeeper-rack-current-unsold-products">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/pegasus-socks/api/v1/shopkeeper/rack-current-unsold-products"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "bearer your-token",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/pegasus-socks/api/v1/shopkeeper/rack-current-unsold-products" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "Authorization: bearer your-token"</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-shopkeeper-rack-current-unsold-products">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{{
+	&quot;status&quot;: 200,
+	&quot;success&quot;: true,
+	&quot;message&quot;: &quot;socks fetching success&quot;,
+	&quot;data&quot;: {
+		&quot;socks&quot;: [
+			{
+				&quot;printed_socks_code&quot;: &quot;LL20412212&quot;,
+				&quot;shop_socks_no&quot;: 0,
+				&quot;selling_price&quot;: 75
+			},
+			{
+				&quot;printed_socks_code&quot;: &quot;LL20412213&quot;,
+				&quot;shop_socks_no&quot;: 0,
+				&quot;selling_price&quot;: 75
+			}
+		]
+	}
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-shopkeeper-rack-current-unsold-products" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-shopkeeper-rack-current-unsold-products"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-shopkeeper-rack-current-unsold-products"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-shopkeeper-rack-current-unsold-products" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-shopkeeper-rack-current-unsold-products"></code></pre>
+</span>
+<form id="form-POSTapi-v1-shopkeeper-rack-current-unsold-products" data-method="POST"
+      data-path="api/v1/shopkeeper/rack-current-unsold-products"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json","Authorization":"bearer your-token"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-shopkeeper-rack-current-unsold-products', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-shopkeeper-rack-current-unsold-products"
+                    onclick="tryItOut('POSTapi-v1-shopkeeper-rack-current-unsold-products');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-shopkeeper-rack-current-unsold-products"
+                    onclick="cancelTryOut('POSTapi-v1-shopkeeper-rack-current-unsold-products');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-shopkeeper-rack-current-unsold-products" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/shopkeeper/rack-current-unsold-products</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTapi-v1-shopkeeper-rack-current-unsold-products" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-v1-shopkeeper-rack-current-unsold-products"
+                                                                data-component="header"></label>
+        </p>
+                </form>
+
+    <h3>Response</h3>
+    <h4 class="fancy-heading-panel"><b>Response Fields</b></h4>
+            <p>
+            <b><code>success</code></b>&nbsp;&nbsp;  &nbsp;
+<br>
+<p>The success of this API response is (<code>true</code> or <code>false</code>).</p>
+        </p>
+                <h2 id="shopkeeper-POSTapi-v1-shopkeeper-unsold-search-product">Unsold Product Search</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-shopkeeper-unsold-search-product">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/pegasus-socks/api/v1/shopkeeper/unsold/search-product"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "bearer your-token",
+};
+
+let body = {
+    "socks_search_text": "1"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/pegasus-socks/api/v1/shopkeeper/unsold/search-product" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "Authorization: bearer your-token" \
+    --data "{
+    \"socks_search_text\": \"1\"
+}"
+</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-shopkeeper-unsold-search-product">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: 200,
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;socks fetching success&quot;,
+    &quot;data&quot;: {
+        &quot;socks&quot;: [
+            {
+                &quot;printed_socks_code&quot;: &quot;LL204122110&quot;,
+                &quot;shop_socks_no&quot;: 0,
+                &quot;selling_price&quot;: 75
+            },
+            {
+                &quot;printed_socks_code&quot;: &quot;LL204122111&quot;,
+                &quot;shop_socks_no&quot;: 0,
+                &quot;selling_price&quot;: 75
+            }
+        ]
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-shopkeeper-unsold-search-product" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-shopkeeper-unsold-search-product"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-shopkeeper-unsold-search-product"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-shopkeeper-unsold-search-product" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-shopkeeper-unsold-search-product"></code></pre>
+</span>
+<form id="form-POSTapi-v1-shopkeeper-unsold-search-product" data-method="POST"
+      data-path="api/v1/shopkeeper/unsold/search-product"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json","Authorization":"bearer your-token"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-shopkeeper-unsold-search-product', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-shopkeeper-unsold-search-product"
+                    onclick="tryItOut('POSTapi-v1-shopkeeper-unsold-search-product');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-shopkeeper-unsold-search-product"
+                    onclick="cancelTryOut('POSTapi-v1-shopkeeper-unsold-search-product');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-shopkeeper-unsold-search-product" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/shopkeeper/unsold/search-product</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTapi-v1-shopkeeper-unsold-search-product" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-v1-shopkeeper-unsold-search-product"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>socks_search_text</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="socks_search_text"
+               data-endpoint="POSTapi-v1-shopkeeper-unsold-search-product"
+               value="1"
+               data-component="body" hidden>
+    <br>
+<p>.</p>
+        </p>
+        </form>
+
+    <h3>Response</h3>
+    <h4 class="fancy-heading-panel"><b>Response Fields</b></h4>
+            <p>
+            <b><code>success</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
+<br>
+<p>The success of this API response is (<code>true</code> or <code>false</code>).</p>
+        </p>
+                <h2 id="shopkeeper-GETapi-v1-shopkeeper-all-sold-product-list">Sold Product List</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-shopkeeper-all-sold-product-list">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/pegasus-socks/api/v1/shopkeeper/all-sold-product-list"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "bearer your-token",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/pegasus-socks/api/v1/shopkeeper/all-sold-product-list" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "Authorization: bearer your-token"</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-shopkeeper-all-sold-product-list">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: 200,
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Socks fetching successfully&quot;,
+    &quot;data&quot;: {
+        &quot;products&quot;: [
+            {
+                &quot;printed_socks_code&quot;: &quot;LO20403222&quot;,
+                &quot;shop_socks_no&quot;: 2,
+                &quot;shop_socks_code&quot;: &quot;LO-62&quot;,
+                &quot;selling_price&quot;: 80
+            },
+            {
+                &quot;printed_socks_code&quot;: &quot;SH217032236&quot;,
+                &quot;shop_socks_no&quot;: 36,
+                &quot;shop_socks_code&quot;: &quot;SH-736&quot;,
+                &quot;selling_price&quot;: 100
+            }
+        ]
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-shopkeeper-all-sold-product-list" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-shopkeeper-all-sold-product-list"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-shopkeeper-all-sold-product-list"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-shopkeeper-all-sold-product-list" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-shopkeeper-all-sold-product-list"></code></pre>
+</span>
+<form id="form-GETapi-v1-shopkeeper-all-sold-product-list" data-method="GET"
+      data-path="api/v1/shopkeeper/all-sold-product-list"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json","Authorization":"bearer your-token"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-shopkeeper-all-sold-product-list', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-shopkeeper-all-sold-product-list"
+                    onclick="tryItOut('GETapi-v1-shopkeeper-all-sold-product-list');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-shopkeeper-all-sold-product-list"
+                    onclick="cancelTryOut('GETapi-v1-shopkeeper-all-sold-product-list');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-shopkeeper-all-sold-product-list" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/shopkeeper/all-sold-product-list</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-v1-shopkeeper-all-sold-product-list" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-v1-shopkeeper-all-sold-product-list"
+                                                                data-component="header"></label>
+        </p>
+                </form>
+
+    <h3>Response</h3>
+    <h4 class="fancy-heading-panel"><b>Response Fields</b></h4>
+            <p>
+            <b><code>success</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
+<br>
+<p>The success of this API response is (<code>true</code> or <code>false</code>).</p>
+        </p>
+                <h2 id="shopkeeper-POSTapi-v1-shopkeeper-sold-product-search-product">Search Sold Product List</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-shopkeeper-sold-product-search-product">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/pegasus-socks/api/v1/shopkeeper/sold-product/search-product"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "bearer your-token",
+};
+
+let body = {
+    "product_code": "'122'"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/pegasus-socks/api/v1/shopkeeper/sold-product/search-product" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "Authorization: bearer your-token" \
+    --data "{
+    \"product_code\": \"\'122\'\"
+}"
+</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-shopkeeper-sold-product-search-product">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: 200,
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Socks seraching successfully&quot;,
+    &quot;data&quot;: {
+        &quot;products&quot;: [
+            {
+                &quot;product_code&quot;: &quot;LL20412211&quot;,
+                &quot;printed_socks_code&quot;: &quot;LL20412211&quot;,
+                &quot;shop_socks_no&quot;: 0,
+                &quot;shop_socks_code&quot;: &quot;&quot;,
+                &quot;selling_price&quot;: 75
+            },
+            {
+                &quot;product_code&quot;: &quot;LL204122122&quot;,
+                &quot;printed_socks_code&quot;: &quot;LL204122122&quot;,
+                &quot;shop_socks_no&quot;: 0,
+                &quot;shop_socks_code&quot;: &quot;&quot;,
+                &quot;selling_price&quot;: 75
+            }
+        ]
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-shopkeeper-sold-product-search-product" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-shopkeeper-sold-product-search-product"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-shopkeeper-sold-product-search-product"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-shopkeeper-sold-product-search-product" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-shopkeeper-sold-product-search-product"></code></pre>
+</span>
+<form id="form-POSTapi-v1-shopkeeper-sold-product-search-product" data-method="POST"
+      data-path="api/v1/shopkeeper/sold-product/search-product"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json","Authorization":"bearer your-token"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-shopkeeper-sold-product-search-product', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-shopkeeper-sold-product-search-product"
+                    onclick="tryItOut('POSTapi-v1-shopkeeper-sold-product-search-product');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-shopkeeper-sold-product-search-product"
+                    onclick="cancelTryOut('POSTapi-v1-shopkeeper-sold-product-search-product');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-shopkeeper-sold-product-search-product" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/shopkeeper/sold-product/search-product</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTapi-v1-shopkeeper-sold-product-search-product" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-v1-shopkeeper-sold-product-search-product"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>product_code</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="product_code"
+               data-endpoint="POSTapi-v1-shopkeeper-sold-product-search-product"
+               value="'122'"
+               data-component="body" hidden>
+    <br>
+<p>.</p>
+        </p>
+        </form>
+
+    <h3>Response</h3>
+    <h4 class="fancy-heading-panel"><b>Response Fields</b></h4>
+            <p>
+            <b><code>success</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
+<br>
+<p>The success of this API response is (<code>true</code> or <code>false</code>).</p>
+        </p>
+            <h1 id="vll-api">VLL-API</h1>
+
+    
+
+            <h2 id="vll-api-GETapi-v1-shop-locations">Shop Locations</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-shop-locations">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/pegasus-socks/api/v1/shop-locations"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/pegasus-socks/api/v1/shop-locations" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-shop-locations">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: 200,
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;shop feching success&quot;,
+    &quot;shops&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;shop_name&quot;: &quot;Xplore&quot;,
+            &quot;remaining_socks&quot;: &quot;11 pair&quot;,
+            &quot;color&quot;: &quot;#fd3995&quot;,
+            &quot;coordinates&quot;: {
+                &quot;latitude&quot;: 23.735778278942618,
+                &quot;longitude&quot;: 90.41519258564742
+            }
+        },
+        {
+            &quot;id&quot;: 2,
+            &quot;shop_name&quot;: &quot;Silver Jeans&quot;,
+            &quot;remaining_socks&quot;: &quot;15 pair&quot;,
+            &quot;color&quot;: &quot;#25aae2&quot;,
+            &quot;coordinates&quot;: {
+                &quot;latitude&quot;: 23.73372299868151,
+                &quot;longitude&quot;: 90.41854974235783
+            }
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-shop-locations" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-shop-locations"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-shop-locations"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-shop-locations" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-shop-locations"></code></pre>
+</span>
+<form id="form-GETapi-v1-shop-locations" data-method="GET"
+      data-path="api/v1/shop-locations"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-shop-locations', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-shop-locations"
+                    onclick="tryItOut('GETapi-v1-shop-locations');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-shop-locations"
+                    onclick="cancelTryOut('GETapi-v1-shop-locations');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-shop-locations" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/shop-locations</code></b>
+        </p>
+                    </form>
+
+    <h3>Response</h3>
+    <h4 class="fancy-heading-panel"><b>Response Fields</b></h4>
+            <p>
+            <b><code>success</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
+<br>
+<p>The success of this API response is (<code>true</code> or <code>false</code>).</p>
+        </p>
+                <h2 id="vll-api-GETapi-v1-onboarding">App Instruction</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-onboarding">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/pegasus-socks/api/v1/onboarding"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/pegasus-socks/api/v1/onboarding" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-onboarding">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: 200,
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Onboarding content fetching success&quot;,
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;image&quot;: &quot;https://png.pngtree.com/png-clipart/20190705/original/pngtree-cartoon-characters-in-swimsuits-on-mobile-screen-png-image_4280509.jpg&quot;,
+            &quot;title&quot;: &quot;Best Digital Solution&quot;,
+            &quot;subtitle&quot;: &quot;Lorem ipsum dolor sit amet, consectetur adipiscing elit&quot;
+        },
+        {
+            &quot;id&quot;: 2,
+            &quot;image&quot;: &quot;https://png.pngtree.com/png-clipart/20190705/original/pngtree-cartoon-characters-in-swimsuits-on-mobile-screen-png-image_4280509.jpg&quot;,
+            &quot;title&quot;: &quot;Best Digital Solution&quot;,
+            &quot;subtitle&quot;: &quot;Lorem ipsum dolor sit amet, consectetur adipiscing elit&quot;
+        },
+        {
+            &quot;id&quot;: 3,
+            &quot;image&quot;: &quot;https://png.pngtree.com/png-clipart/20190705/original/pngtree-cartoon-characters-in-swimsuits-on-mobile-screen-png-image_4280509.jpg&quot;,
+            &quot;title&quot;: &quot;Best Digital Solution&quot;,
+            &quot;subtitle&quot;: &quot;Lorem ipsum dolor sit amet, consectetur adipiscing elit&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-onboarding" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-onboarding"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-onboarding"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-onboarding" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-onboarding"></code></pre>
+</span>
+<form id="form-GETapi-v1-onboarding" data-method="GET"
+      data-path="api/v1/onboarding"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-onboarding', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-onboarding"
+                    onclick="tryItOut('GETapi-v1-onboarding');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-onboarding"
+                    onclick="cancelTryOut('GETapi-v1-onboarding');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-onboarding" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/onboarding</code></b>
+        </p>
+                    </form>
+
+        <h1 id="voucher">Voucher</h1>
+
+    
+
+            <h2 id="voucher-GETapi-v1-shopkeeper-product-refill-voucher">Product Re-Fill Voucher</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-shopkeeper-product-refill-voucher">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/pegasus-socks/api/v1/shopkeeper/product/refill-voucher"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "bearer your-token",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/pegasus-socks/api/v1/shopkeeper/product/refill-voucher" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "Authorization: bearer your-token"</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-shopkeeper-product-refill-voucher">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: 200,
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Your product voucher list fetching successfully&quot;,
+    &quot;data&quot;: {
+        &quot;vouchers&quot;: [
+            {
+                &quot;voucher_name&quot;: &quot;2022-03-17-VLS2-Refill&quot;,
+                &quot;voucher_date&quot;: &quot;17th March, 2022&quot;,
+                &quot;location&quot;: &quot;http://venturelifestylelimited.com/public/voucher/2022-03-17-VLS2-Refill.pdf&quot;
+            }
+        ]
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-shopkeeper-product-refill-voucher" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-shopkeeper-product-refill-voucher"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-shopkeeper-product-refill-voucher"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-shopkeeper-product-refill-voucher" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-shopkeeper-product-refill-voucher"></code></pre>
+</span>
+<form id="form-GETapi-v1-shopkeeper-product-refill-voucher" data-method="GET"
+      data-path="api/v1/shopkeeper/product/refill-voucher"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json","Authorization":"bearer your-token"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-shopkeeper-product-refill-voucher', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-shopkeeper-product-refill-voucher"
+                    onclick="tryItOut('GETapi-v1-shopkeeper-product-refill-voucher');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-shopkeeper-product-refill-voucher"
+                    onclick="cancelTryOut('GETapi-v1-shopkeeper-product-refill-voucher');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-shopkeeper-product-refill-voucher" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/shopkeeper/product/refill-voucher</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-v1-shopkeeper-product-refill-voucher" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-v1-shopkeeper-product-refill-voucher"
+                                                                data-component="header"></label>
+        </p>
+                </form>
+
+    <h3>Response</h3>
+    <h4 class="fancy-heading-panel"><b>Response Fields</b></h4>
+            <p>
+            <b><code>success</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
+<br>
+<p>The success of this API response is (<code>true</code> or <code>false</code>).</p>
+        </p>
+                <h2 id="voucher-GETapi-v1-shopkeeper-product-bill-voucher">Product Bill Voucher</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-shopkeeper-product-bill-voucher">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/pegasus-socks/api/v1/shopkeeper/product/bill-voucher"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "bearer your-token",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/pegasus-socks/api/v1/shopkeeper/product/bill-voucher" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "Authorization: bearer your-token"</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-shopkeeper-product-bill-voucher">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;status&quot;: 200,
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Your bill voucher list fetching successfully&quot;,
+    &quot;data&quot;: {
+        &quot;vouchers&quot;: [
+            {
+                &quot;voucher_name&quot;: &quot;March 2022&quot;,
+                &quot;voucher_date&quot;: &quot;2nd April, 2022&quot;,
+                &quot;location&quot;: &quot;http://venturelifestylelimited.com/public/Bill/voucher/90000180125-bill.pdf&quot;
+            },
+            {
+                &quot;voucher_name&quot;: &quot;February 2022&quot;,
+                &quot;voucher_date&quot;: &quot;3rd March, 2022&quot;,
+                &quot;location&quot;: &quot;http://venturelifestylelimited.com/public/Bill/voucher/90000148927-bill.pdf&quot;
+            }
+        ]
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-shopkeeper-product-bill-voucher" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-shopkeeper-product-bill-voucher"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-shopkeeper-product-bill-voucher"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-shopkeeper-product-bill-voucher" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-shopkeeper-product-bill-voucher"></code></pre>
+</span>
+<form id="form-GETapi-v1-shopkeeper-product-bill-voucher" data-method="GET"
+      data-path="api/v1/shopkeeper/product/bill-voucher"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json","Authorization":"bearer your-token"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-shopkeeper-product-bill-voucher', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-shopkeeper-product-bill-voucher"
+                    onclick="tryItOut('GETapi-v1-shopkeeper-product-bill-voucher');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-shopkeeper-product-bill-voucher"
+                    onclick="cancelTryOut('GETapi-v1-shopkeeper-product-bill-voucher');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-shopkeeper-product-bill-voucher" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/shopkeeper/product/bill-voucher</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-v1-shopkeeper-product-bill-voucher" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-v1-shopkeeper-product-bill-voucher"
+                                                                data-component="header"></label>
+        </p>
+                </form>
+
+    <h3>Response</h3>
+    <h4 class="fancy-heading-panel"><b>Response Fields</b></h4>
+            <p>
+            <b><code>success</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
+<br>
+<p>The success of this API response is (<code>true</code> or <code>false</code>).</p>
+        </p>
+                <h2 id="voucher-GETapi-v1-shopkeeper-activity">Shop Activity Log</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-shopkeeper-activity">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/pegasus-socks/api/v1/shopkeeper/activity"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "bearer your-token",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/pegasus-socks/api/v1/shopkeeper/activity" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "Authorization: bearer your-token"</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-shopkeeper-activity">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+	&quot;status&quot;: 200,
+	&quot;success&quot;: true,
+	&quot;message&quot;: &quot;Shop activity fetching success&quot;,
+	&quot;data&quot;: {
+		&quot;shop_activity&quot;: [
+			{
+				&quot;message&quot;: &quot;SOCKS_BILL_COLLECTION_BY_AGENT&quot;,
+				&quot;operation_date&quot;: &quot;2022-04-02&quot;
+			},
+			{
+				&quot;message&quot;: &quot;SOCKS_SOLD_BY_SHOPKEEPER&quot;,
+				&quot;operation_date&quot;: &quot;2022-03-31&quot;
+			},
+			{
+				&quot;message&quot;: &quot;SOCKS_SOLD_BY_SHOPKEEPER&quot;,
+				&quot;operation_date&quot;: &quot;2022-03-23&quot;
+			},
+		]
+	}
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-shopkeeper-activity" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-shopkeeper-activity"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-shopkeeper-activity"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-shopkeeper-activity" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-shopkeeper-activity"></code></pre>
+</span>
+<form id="form-GETapi-v1-shopkeeper-activity" data-method="GET"
+      data-path="api/v1/shopkeeper/activity"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json","Authorization":"bearer your-token"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-shopkeeper-activity', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-shopkeeper-activity"
+                    onclick="tryItOut('GETapi-v1-shopkeeper-activity');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-shopkeeper-activity"
+                    onclick="cancelTryOut('GETapi-v1-shopkeeper-activity');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-shopkeeper-activity" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/shopkeeper/activity</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-v1-shopkeeper-activity" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-v1-shopkeeper-activity"
+                                                                data-component="header"></label>
+        </p>
+                </form>
+
+    <h3>Response</h3>
+    <h4 class="fancy-heading-panel"><b>Response Fields</b></h4>
+            <p>
+            <b><code>success</code></b>&nbsp;&nbsp;  &nbsp;
+<br>
+<p>The success of this API response is (<code>true</code> or <code>false</code>).</p>
+        </p>
+        
+
+        
+    </div>
+    <div class="dark-box">
+                    <div class="lang-selector">
+                                                        <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
+                                                        <button type="button" class="lang-button" data-language-name="bash">bash</button>
+                            </div>
+            </div>
+</div>
+</body>
+</html>
